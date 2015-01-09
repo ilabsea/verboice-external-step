@@ -1,0 +1,16 @@
+operators:
+  mobitel: [11, 12, 17, 77, 78, 85, 89, 92, 95, 99]
+  smart: [10, 93, 69, 70, 96, 15, 16, 81, 98, 86]
+  beeline: [90, 67, 68]
+  metfone: [97, 88, 71]
+  qb: [13, 80, 83, 84]
+  cootel: [38]
+
+codes:
+  mobitel: 1
+  smart: 2
+  beeline: 3
+  metfone: 4
+  qb: 5
+  cootel: 6
+  other: 7
