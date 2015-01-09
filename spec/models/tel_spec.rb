@@ -25,7 +25,7 @@ class TestTelSpec < Test::Unit::TestCase
     assert_equal(2, Tel.new('85510999999').code)
     assert_equal(2, Tel.new('+85510999999').code)
 
-    assert_equal(7, Tel.new('+1109999999').code)
+    assert_equal(0, Tel.new('+1109999999').code)
   end
  
 end
