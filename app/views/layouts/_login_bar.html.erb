@@ -1,0 +1,18 @@
+<div class="dropdown">
+  <% if user_signed_in? %>
+    <a  class="blog-nav-item dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+      <%= current_user.email %>
+      <span class="caret"></span>
+    </a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <li role="presentation">
+       <%= link_to "Sign out", destroy_user_session_path, tabindex: -1,
+                                              method: :delete,
+                                              data: {confirm: 'Are you sure you want to sign out'} %>
+       </li>
+    </ul>
+  <% else %>
+    <%= link_to 'Sign in', new_user_session_path, class: 'blog-nav-item' %>
+  <% end %>
+</div>

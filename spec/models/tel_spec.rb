@@ -1,31 +1,27 @@
-require File.expand_path("../../../models/tel.rb", __FILE__)
-require File.expand_path("../../../models/operator.rb", __FILE__)
-require "test/unit"
- 
-class TestTelSpec < Test::Unit::TestCase
- 
-  def test_prefix
-    assert_equal('12', Tel.new('012999999').area_code)
-    assert_equal('12', Tel.new('85512999999').area_code)
-    assert_equal('12', Tel.new('+85512999999').area_code)
+require "rails_helper"
 
-    assert_equal('10', Tel.new('010999999').area_code)
-    assert_equal('10', Tel.new('85510999999').area_code)
-    assert_equal('10', Tel.new('+85510999999').area_code)
+describe Tel, :type => :model do
+  context "area code" do
+    it { expect(Tel.new('012999999').area_code).to eq('12') }
+    it { expect(Tel.new('85512999999').area_code).to eq('12') }
+    it { expect(Tel.new('+85512999999').area_code).to eq('12') }
 
-    assert_equal(nil, Tel.new('+1109999999').area_code)
+    it { expect(Tel.new('010999999').area_code).to eq('10') }
+    it { expect(Tel.new('85510999999').area_code).to eq('10') }
+    it { expect(Tel.new('+85510999999').area_code).to eq('10') }
+
+    it { expect(Tel.new('+1109999999').area_code).to eq(nil) }
   end
 
-  def test_code
-    assert_equal(1, Tel.new('012999999').code)
-    assert_equal(1, Tel.new('85512999999').code)
-    assert_equal(1, Tel.new('+85512999999').code)
+  context "operator code" do
+    it { expect(Tel.new('012999999').operator_code).to eq(1) }
+    it { expect(Tel.new('85512999999').operator_code).to eq(1) }
+    it { expect(Tel.new('+85512999999').operator_code).to eq(1) }
 
-    assert_equal(2, Tel.new('010999999').code)
-    assert_equal(2, Tel.new('85510999999').code)
-    assert_equal(2, Tel.new('+85510999999').code)
+    it { expect(Tel.new('010999999').operator_code).to eq(2) }
+    it { expect(Tel.new('85510999999').operator_code).to eq(2) }
+    it { expect(Tel.new('+85510999999').operator_code).to eq(2) }
 
-    assert_equal(0, Tel.new('+1109999999').code)
+    it { expect(Tel.new('+1109999999').operator_code).to eq(0) }
   end
- 
 end

@@ -1,0 +1,50 @@
+footer.copyright {
+  background: none repeat scroll 0 0 #fff;
+  bottom: 0;
+  display: block;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+}
+
+.app-warning {
+  color: #f0ad4e;
+}
+
+.main-content {
+  margin-top: 20px;
+}
+
+.form-container {
+  width: 520px;
+  padding: 0 10px;
+}
+
+.l-side {
+  float:left;
+}
+
+.r-side {
+  float:right;
+  text-align:right;
+}
+
+.loading {
+  background: image_url("loading.gif");
+  background-repeat: no-repeat;
+  padding-left: 20px;
+}
+
+.icon {
+  padding: 5px 5px;
+  text-decoration: none !important;
+}
+
+
+.bar-title {
+    margin-right: 110px;
+}
+
+.bar-icon {
+    width: 100px;
+}

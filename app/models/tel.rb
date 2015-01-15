@@ -19,7 +19,7 @@ class Tel
     area_code
   end
 
-  def code
+  def operator_code
     operator_name = 'other'
     Operator.list.each do |name, area_codes|
       if area_codes.include?(area_code.to_i)

@@ -1,0 +1,98 @@
+$form-margin-left: 270px;
+
+.form-group{
+	margin-bottom: 5px;
+}
+.form {
+	width: 600px;
+}
+
+.btn-block {
+	padding-top: 10px;
+}
+
+.form-control{
+	display: inline !important;
+	padding: 3px !important;
+  height: 32px !important;
+}
+
+.field-block {
+	label {
+		display: block;
+		font-weight: normal;
+		margin-bottom: 0px !important;
+	}
+	.control {
+		display: block;
+		input[type=text], select {
+	    width: 300px;
+	  }
+	}
+}
+
+.ui-multi {
+	input, select {
+		width: $form-margin-left !important;
+	}
+
+	a, button {
+		width: 30px;
+		padding: 5px;
+		margin-top: -4px;
+
+	}
+
+	.input-group-btn{
+		width: 10px !important;
+		padding-top: 4px;
+	}
+}
+
+.ui-form-multi {
+	input, select {
+		width: 120px;
+		margin-right: 10px;
+	}
+}
+
+.field {
+	label {
+	  float: left;
+	  width: 200px;
+	  text-align:right;
+	  font-weight: normal;
+	}
+	.control {
+	  margin-left: $form-margin-left;
+	  input[type=text] {
+	    width: 300px;
+	  }
+
+	  input.ui-multi {
+	  	width: $form-margin-left !important;
+	  }
+	}
+	@include clear-after();
+}
+
+.label-inline {
+	display: inline !important;
+}
+
+.ui-2-label  {
+	label { 
+		display: inline !important;
+	}
+
+	input {
+		width: 120px !important;
+	}
+}
+
+.has-error {
+	color: #a94442 !important;
+	input, select {
+		border: 1px solid #a94442 !important;
+	}
+}

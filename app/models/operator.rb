@@ -1,7 +1,6 @@
-require 'yaml'
-
 class Operator
-  path = File.expand_path('../../config/mobile_operator.yml', __FILE__)
+  path = File.join(Rails.root, 'config', 'mobile_operator.yml')
+  # path = File.expand_path("#{Rails.root}/config/mobile_operator.yml", __FILE__)
   @@operators = File.exists?(path) ? YAML::load(File.open(path)) : {}
 
   def self.list
