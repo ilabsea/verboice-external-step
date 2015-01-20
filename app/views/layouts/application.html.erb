@@ -24,6 +24,12 @@
         <div class='notification'>
           <%= render 'layouts/notification' %>
         </div>
+
+        <% if user_signed_in? %>
+          <div class='breadcrumbs'>
+            <%= render 'layouts/breadcrumb' %>
+          </div>
+        <% end %>
       
         <%= yield %>
       </div>

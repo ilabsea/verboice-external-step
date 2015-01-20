@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+	<%= link_to 'Steps', accounts_path, class: 'blog-nav-item' %>
+	<% if current_user.admin? %>
+		<span>|</span>
+		<%= link_to 'Users', accounts_path, class: 'blog-nav-item' %>
+	<% end %>
+	<span>|</span>
+<% end %>

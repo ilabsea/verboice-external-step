@@ -1,0 +1,32 @@
+<div class="container">
+    <%= form_for(@user, url: accounts_path(@user), html: { class: 'form'}) do |f| %>
+
+      <h2>New user</h2>
+
+      <div class="field-block">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control input-lg', autofocus: true, required: true%>
+    </div>
+
+    <div class="field-block">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control input-lg', autocomplete: "off" %>
+    </div>
+
+    <div class="field-block">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control input-lg', autocomplete: "off" %>
+    </div>
+
+    <div class='field-block'>
+      <%= f.label :role %>
+        <%= f.select(:role, options_for_select([['Admin User', User::ROLE_ADMIN], ['Normal User', User::ROLE_USER]], User::ROLE_USER), {}, { :class => 'form-control' })%>
+    </div>
+
+    <div class="field-block actions">
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+      <%= link_to 'Back', :back, class: 'btn btn-default button' %>
+    </div>
+
+    <% end %>
+</div>
