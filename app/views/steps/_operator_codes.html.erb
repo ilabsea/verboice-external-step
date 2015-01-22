@@ -1,21 +1,27 @@
 <div class='mobile-operator-code'>
-	<table class="table table-bordered w250">
+	<table class="table table-bordered w500">
 		<caption><strong>Mobile Operator Code</strong></caption>
 	  <thead>
 	  	<tr>
 	  		<th>Operator Name</th>
 	  		<th>Operator Code</th>
+  			<th>Prefix</th>
 	  	</tr>
 	  </thead>
 	  <tbody>
 	  	<% Operator.all.each do |operator| %>
 	  		<tr>
-		  		<td class='col-sm-2'><%= operator.name %></td>
-		  		<td class='col-sm-2'><%= operator.code %></td>
+		  		<td class='col-sm-3'><%= operator.name %></td>
+		  		<td class='col-sm-3'><%= operator.code %></td>
+	  			<td><%= operator.prefixes.join(Operator::SEPERATOR_DELIMETER_DISPLAY) %></td>
 		  	</tr>
 	  	<% end %>
 	  </tbody>
 	</table>
 </div>
 
-<%= render 'prefix_form', step: step %>
+<% if current_user.admin? %>
+	<%= render 'prefix_form', step: step %>
+<% end %>
+
+

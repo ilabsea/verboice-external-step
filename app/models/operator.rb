@@ -3,5 +3,6 @@ class Operator < ActiveRecord::Base
 	serialize :prefixes, Array
 
 	SEPERATOR_DELIMETER = ","
+	SEPERATOR_DELIMETER_DISPLAY = ", "
 
 end

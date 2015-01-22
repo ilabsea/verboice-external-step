@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
     role == ROLE_ADMIN
   end
 
+  def user?
+    role == ROLE_USER
+  end
+
   def role_name
     admin? ? 'Admin' : 'User'
   end
