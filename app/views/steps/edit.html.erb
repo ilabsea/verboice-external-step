@@ -1,0 +1,14 @@
+<div class='title'>
+	<h3><%= @step.display_name %></h3>
+</div>
+
+<div class='description'>
+	<p><%= @step.description %></p>
+</div>
+
+<%= render 'table', title: 'inputs', variables: @step.inputs %>
+<%= render 'table', title: 'outputs', variables: @step.outputs %>
+
+<% if params[:id] == Step::DETECT_MOBILE_OPERATOR %>
+	<%= render 'operator_codes', step: @step %>
+<% end %>

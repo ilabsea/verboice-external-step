@@ -3,9 +3,9 @@ module ApplicationHelper
 	def controller_name
 		names = params[:controller].split('/')
 		return '' if names.last == 'home'
-		return 'User List' if names.last == 'accounts'
+		return 'Users' if names.last == 'accounts'
 		return 'Setting' if names.last == 'registrations'
-		names.last
+		names.last.camelize
 	end
 
 	def action_name

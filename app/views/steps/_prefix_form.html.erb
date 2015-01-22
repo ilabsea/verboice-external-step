@@ -1,0 +1,26 @@
+<div class="collapse-group prefix-setting w500">
+	<a class="btn btn-collapse" href="#prefix-setting">Prefix Setting »</a>
+	<div id='prefix-setting' class="panel collapse">
+		<div class="panel-body">
+			<%= form_tag("/steps/#{step['name']}", class: 'form', method: :put) do %>
+
+		  	<% Operator.all.each do |operator| %>
+		  		<% unless operator.name == 'other' %>
+					  <div class="form-group">
+					  	<%= label_tag "prefix[#{operator.name}]", operator.name, class: 'col-sm-2 control-label' %>
+					    <div class="col-sm-10">
+					      <%= text_field_tag "prefix[#{operator.name}]", operator.prefixes.join(Operator::SEPERATOR_DELIMETER), placeholder: operator.name, class: 'form-control prefix-number' %>
+					    </div>
+					  </div>
+				  <% end %>
+			  <% end %>
+
+			  <div class="col-sm-2"></div>
+			  <div class="form-group col-sm-10">
+		      <%= submit_tag "Save", class: 'btn btn-primary' %>
+		    </div>
+
+			<% end %>
+	  </div>
+	</div>
+</div>

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115035825) do
+ActiveRecord::Schema.define(version: 20150121102913) do
+
+  create_table "operators", force: true do |t|
+    t.string   "name"
+    t.integer  "code"
+    t.text     "prefixes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "operators", ["name"], name: "index_operators_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

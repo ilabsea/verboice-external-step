@@ -1,0 +1,19 @@
+<table class="table table-hover">
+	<caption><strong>Step List</strong></caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Manifest</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @steps.each do |step| %>
+			<tr>
+				<td><%= link_to step.display_name, edit_step_path(step.name) %></td>
+				<td><%= step.description %></td>
+				<td><%= step.manifest %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

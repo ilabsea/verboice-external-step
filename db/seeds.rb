@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Operator.destroy_all
+
+Operator.create! name: 'mobitel', code: 1
+Operator.create! name: 'smart', code: 2
+Operator.create! name: 'beeline', code: 3
+Operator.create! name: 'metfone', code: 4
+Operator.create! name: 'qb', code: 5
+Operator.create! name: 'cootel', code: 6
+Operator.create! name: 'other', code: 0

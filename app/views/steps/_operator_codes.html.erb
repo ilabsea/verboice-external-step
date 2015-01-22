@@ -1,0 +1,21 @@
+<div class='mobile-operator-code'>
+	<table class="table table-bordered w250">
+		<caption><strong>Mobile Operator Code</strong></caption>
+	  <thead>
+	  	<tr>
+	  		<th>Operator Name</th>
+	  		<th>Operator Code</th>
+	  	</tr>
+	  </thead>
+	  <tbody>
+	  	<% Operator.all.each do |operator| %>
+	  		<tr>
+		  		<td class='col-sm-2'><%= operator.name %></td>
+		  		<td class='col-sm-2'><%= operator.code %></td>
+		  	</tr>
+	  	<% end %>
+	  </tbody>
+	</table>
+</div>
+
+<%= render 'prefix_form', step: step %>
