@@ -1,43 +1,29 @@
 class Step
-  include Virtus.model
+  attr_accessor :name, :display_name, :icon, :type
 
-  attribute :name, String
-  attribute :display_name, String
-  attribute :description, String
-  attribute :manifest, String
-  attribute :inputs, Array
-  attribute :outputs, Array
-
-  DETECT_MOBILE_OPERATOR = 'detect_mobile_operator'
-
-	def self.from_hash hash = {}
-    
-    input_variables = hash['input']['variables']['variable'].kind_of?(Hash) ? [hash['input']['variables']['variable']] : hash['input']['variables']['variable']
-    
-    inputs = []
-    input_variables.each do |input_variable|
-      inputs.push(Variable.new(input_variable))
-    end if input_variables
-
-    output_variables = hash['output']['variables']['variable'].kind_of?(Hash) ? [hash['output']['variables']['variable']] : hash['output']['variables']['variable']
-
-    outputs = []
-    output_variables.each do |variable_hash|
-      outputs.push(Variable.new(variable_hash))
-    end if output_variables
-
-    Step.new(
-      name: hash['name'],
-      display_name: hash['display_name'],
-      description: hash['description'],
-      manifest: hash['manifest'],
-      inputs: inputs,
-      outputs: outputs
-    )
+  def initialize
+    @icon = 'medicalkit'
+    @type = 'callback'
   end
 
-  def self.find_by_name name
-    Xml.steps.each { |step| return step if step.name == name }
+  def config_settings
+    raise 'You need to redefine this in your class'
   end
 
+  def config_response
+    raise 'You need to redefine this in your class'
+  end
+
+  def self.create_definition_with(name:)
+    definition_type(name: name).new
+  end
+
+  def self.create_definitions_with(name:)
+    name.split(",").map { |definition_name| create_definition_with(name: definition_name) }
+  end
+
+  def self.definition_type(name:)
+    step_name = name.camelize
+    "Steps::#{step_name}".constantize
+  end
 end

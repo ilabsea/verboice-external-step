@@ -4,16 +4,15 @@
     <name>detect_mobile_operator</name>
     <display_name>Detect Mobile Operator</display_name>
     <description>Detect Mobile Operator</description>
-    <manifest>http://{service_domain}/detect_operator</manifest>
+    <manifest>http://{service_domain}/steps/detect_mobile_operator/manifest</manifest>
     <input>
       <variables>
-        <variable name="phone_number" display_name="Phone number" description="The number to detect operator" type="alphanumeric"/>
+        <variable name="address" display_name="Address" description="The number to detect operator" type="alphanumeric"/>
       </variables>
     </input>
     <output type="variables">
       <variables>
         <variable name="mobile_operator_code" display_name="Mobile operator code" description="The mobile operator code" type="numeric"/>
-        <variable name="testing" display_name="testing" description="testing" type="testing"/>
       </variables>
     </output>
   </step>
@@ -21,11 +20,11 @@
     <name>date</name>
     <display_name>Date</display_name>
     <description>Returning the current datetime</description>
-    <manifest>http://{service_domain}/date</manifest>
+    <manifest>http://{service_domain}/steps/date/manifest</manifest>
     <input>
       <variables>
-        <variable name="number" display_name="Day ago" description="Date" type="numeric"/>
-        <variable name="testing" display_name="testing" description="testing" type="testing"/>
+        <variable name="unit" display_name="Date unit" description="Unit of date(day/week/month/year)" type="numeric"/>
+        <variable name="value" display_name="Value" description="Number of unit(day/week/month/year) ago" type="numeric"/>
       </variables>
     </input>
     <output type="variables">

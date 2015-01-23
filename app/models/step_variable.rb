@@ -1,4 +1,4 @@
-class Variable
+class StepVariable
 	include Virtus.model
 
 	attribute :name, String

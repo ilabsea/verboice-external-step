@@ -1,5 +1,6 @@
 class Tel
-  PREFIXES = ["+855", "855", "0"]
+  PREFIXES = ["+8550", "8550", "+855", "855", "0"]
+  AREA_CODE_LENGTH = 2
 
   def initialize number
     @number = number
@@ -11,7 +12,7 @@ class Tel
     PREFIXES.each do |prefix|
       prefix_number = @number[0...prefix.length]
       if prefix == prefix_number
-        area_code = @number[prefix.length...(prefix.length + 2)]
+        area_code = @number[prefix.length...(prefix.length + AREA_CODE_LENGTH)]
         break
       end
     end
@@ -20,15 +21,9 @@ class Tel
   end
 
   def operator_code
-    operator_name = 'other'
-    Operator.list.each do |name, area_codes|
-      if area_codes.include?(area_code.to_i)
-        operator_name = name
-        break
-      end
-    end
-
-    Operator.codes[operator_name]
+    operator = Operator.get(area_code: area_code)
+    operator = Operator.other if operator.nil?
+    operator.code
   end
 
 end

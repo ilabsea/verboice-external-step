@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :accounts, only: [:index, :new, :create, :destroy]
-  resources :steps
+  resources :steps, only: [:index, :edit, :update] do
+    get :manifest, on: :member, defaults: { format: :xml }
+    post :result, on: :member, defaults: { format: :json }
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

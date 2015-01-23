@@ -9,6 +9,6 @@
 <%= render 'table', title: 'inputs', variables: @step.inputs %>
 <%= render 'table', title: 'outputs', variables: @step.outputs %>
 
-<% if params[:id] == Step::DETECT_MOBILE_OPERATOR %>
+<% if params[:id] == Xml::StepNode::DETECT_MOBILE_OPERATOR %>
 	<%= render 'operator_codes', step: @step %>
 <% end %>

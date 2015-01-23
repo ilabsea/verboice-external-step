@@ -1,0 +1,23 @@
+<steps>
+  <step name="<%=step.name%>"
+            display-name="<%= step.display_name %>"
+            icon="<%= step.icon %>"
+            type="<%= step.type %>"
+            callback-url="http://{service_domain}<%=result_step_path(format: :json) %>">
+    <% unless step.config_settings.empty? %>
+      <settings>
+        <% step.config_settings.each do |variable| %>
+          <variable name="<%= variable.name %>"
+                    display-name="<%= variable.display_name %>"
+                    type="<%= variable.type%>"/>
+        <% end %>
+      </settings>
+    <% end %>
+
+    <response type="variables">
+      <variable name="<%= step.config_response.name %>"
+                display-name="<%= step.config_response.display_name %>"
+                type="<%= step.config_response.type%>" />
+    </response>
+  </step>
+</steps>
