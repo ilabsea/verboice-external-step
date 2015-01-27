@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   delete 'sign_out', to: 'sessions#destroy'
 
-  resources :accounts, only: [:index, :new, :create, :destroy]
   resources :steps, only: [:index, :edit, :update] do
     get :manifest, on: :member, defaults: { format: :xml }
     post :result, on: :member, defaults: { format: :json }
