@@ -1,0 +1,11 @@
+defaults: &defaults
+  APP_NAME: 'Verboice External Step'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

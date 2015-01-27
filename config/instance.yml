@@ -1,0 +1,17 @@
+default: &default
+  name: localhost
+  url: http://localhost:3000
+  end_point: http://localhost:3000/api2
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  name: example
+  url: http://example.com
+  end_point: http://example.com/api2

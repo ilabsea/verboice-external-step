@@ -1,0 +1,4 @@
+class ApiException < Exception
+
+
+end

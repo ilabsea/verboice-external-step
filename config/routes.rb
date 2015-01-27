@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+  get 'sign_in', to: 'sessions#new'
+
+  resources :sessions, only: [:new, :create]
+  delete 'sign_out', to: 'sessions#destroy'
 
   resources :accounts, only: [:index, :new, :create, :destroy]
   resources :steps, only: [:index, :edit, :update] do

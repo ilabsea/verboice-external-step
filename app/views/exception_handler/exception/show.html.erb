@@ -1,0 +1,43 @@
+<div style='width: 600px; margin: 80px auto 0 auto; text-align: center;'>
+		<% if @status.to_s == "404" %>
+
+			Sorry, this page is missing! 
+
+			<div>
+				 <%= link_to 'Back', "javascript:history.go(-1)" %> 
+				 <span style='color: #ccc; font-weight:bold; padding: 0px 10px;'>.</span>
+				 <%= link_to 'Home', sign_out_path %>
+			</div>	
+
+		<% else %>
+
+			<div>
+
+				<!--Alert -->
+				<%= image_tag 'exception_handler/alert.png', width: "150", alt: "Error!", title: "Sorry, A Server Error Occurred", class: "alert" %>
+			
+				<!--Message -->
+				<div class="error">
+					<strong><%= details[:name] %></strong>
+					<span><%= details[:message] %></span>
+				</div>
+				
+				<br>
+
+				<div>
+				 <%= link_to 'Retry', "javascript:location.reload()" %> 
+				 <span style='color: #ccc; font-weight:bold; padding: 0px 10px;'>.</span>
+				 <%= link_to 'Reconnect', sign_out_path, method: 'delete' %>
+				</div>	
+
+				<!--Contact -->
+				<div class="contact">
+					<% ExceptionHandler.config.social.each do |item, address| %>
+						<%= link_to image_tag("exception_handler/contact/#{item}.png", title: item.to_s.titleize), address, target: :blank %>
+					<% end %>
+				</div>
+				
+			</div>
+
+		<% end %>
+</div>

@@ -35,7 +35,15 @@ gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'nokogiri'
+
+gem 'her'
+gem 'typhoeus'
 gem 'virtus'
+gem 'addressable'
+
+gem "therubyracer"
+gem "less-rails" 
+gem "exception_handler"
 
 # Use unicorn as the app server
 # gem 'unicorn'

@@ -1,15 +1,14 @@
 <div class="blog-masthead">
   <div class='container'>
-    <nav class="blog-nav">
+    <nav class="blog-nav navbar-default">
       <div class='l-side action-menu'>
-
-        <a class='blog-nav-item' ui-sref= 'projects' >
-          Verboice External Step
-        </a>
+        <%= link_to ENV['APP_NAME'], root_url, class: 'blog-nav-item' %>
       </div>
 
       <div class='r-side profile-menu'><%= render 'layouts/login_bar' %></div>
-      <div class='r-side'><%= render 'layouts/menu' %></div>
+      <% if user_signed_in? %>
+      	<div class='r-side'><%= render 'layouts/menu_bar' %></div>
+    	<% end %>
     </nav>
   </div>
 </div>
