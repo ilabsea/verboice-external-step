@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127092926) do
+ActiveRecord::Schema.define(version: 20150128034251) do
 
   create_table "instances", force: true do |t|
     t.string   "name"
@@ -31,5 +31,27 @@ ActiveRecord::Schema.define(version: 20150127092926) do
   end
 
   add_index "operators", ["name"], name: "index_operators_on_name", unique: true, using: :btree
+
+  create_table "step_variables", force: true do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.text     "description"
+    t.string   "kind"
+    t.string   "direction"
+    t.integer  "step_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "steps", force: true do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.text     "description"
+    t.string   "icon",         default: "medicalkit"
+    t.string   "kind",         default: "callback"
+    t.text     "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

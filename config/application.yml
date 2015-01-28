@@ -1,5 +1,6 @@
 defaults: &defaults
   APP_NAME: 'Verboice External Step'
+  HOST: 'http://localhost:3001/'
 
 development:
   <<: *defaults

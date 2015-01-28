@@ -2,22 +2,24 @@
   <step name="<%=step.name%>"
             display-name="<%= step.display_name %>"
             icon="<%= step.icon %>"
-            type="<%= step.type %>"
+            type="<%= step.kind %>"
             callback-url="http://{service_domain}<%=result_step_path(format: :json) %>">
-    <% unless step.config_settings.empty? %>
+    <% unless step.variables.incoming.empty? %>
       <settings>
-        <% step.config_settings.each do |variable| %>
+        <% step.variables.incoming.each do |variable| %>
           <variable name="<%= variable.name %>"
                     display-name="<%= variable.display_name %>"
-                    type="<%= variable.type%>"/>
+                    type="<%= variable.kind %>"/>
         <% end %>
       </settings>
     <% end %>
 
     <response type="variables">
-      <variable name="<%= step.config_response.name %>"
-                display-name="<%= step.config_response.display_name %>"
-                type="<%= step.config_response.type%>" />
+      <% step.variables.outgoing.each do |variable| %>
+        <variable name="<%= variable.name %>"
+                  display-name="<%= variable.display_name %>"
+                  type="<%= variable.kind %>" />
+      <% end %>
     </response>
   </step>
 </steps>

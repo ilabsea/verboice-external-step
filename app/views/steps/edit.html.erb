@@ -6,8 +6,8 @@
 	<p><%= @step.description %></p>
 </div>
 
-<%= render 'table', title: 'inputs', variables: @step.inputs %>
-<%= render 'table', title: 'outputs', variables: @step.outputs %>
+<%= render 'table', title: 'inputs', variables: @step.variables.incoming %>
+<%= render 'table', title: 'outputs', variables: @step.variables.outgoing %>
 
 <% if params[:id] == Xml::StepNode::DETECT_MOBILE_OPERATOR %>
 	<%= render 'operator_codes', step: @step %>

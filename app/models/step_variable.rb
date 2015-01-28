@@ -1,9 +1,18 @@
-class StepVariable
-	include Virtus.model
+class StepVariable < ActiveRecord::Base
+	validates :name, :display_name, :kind, :direction, presence: true
+	validates :name, uniqueness: { scope: :step_id }
 
-	attribute :name, String
-	attribute :display_name, String
-	attribute :description, String
-	attribute :type, String
+	belongs_to :step
+
+	DIRECTION_INCOMING = 'incoming'
+	DIRECTION_OUTGOING = 'outgoing'
+
+	def self.incoming
+		where(direction: DIRECTION_INCOMING)
+	end
+
+	def self.outgoing
+		where(direction: DIRECTION_OUTGOING)
+	end
 
 end

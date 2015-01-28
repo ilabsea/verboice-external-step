@@ -9,12 +9,18 @@
 	  	</tr>
 	  </thead>
 	  <tbody>
-	  	<% variables.each do |variable| %>
+	  	<% if variables.empty? %>
 		  	<tr>
-		  		<td><%= variable.display_name %></td>
-		  		<td><%= variable.description %></td>
-		  		<td><%= variable.type %></td>
-		  	</tr>
+	  			<td colspan='3'>No required</td>
+	  		</tr>
+	  	<% else %>
+	  		<% variables.each do |variable| %>
+			  	<tr>
+			  		<td><%= variable.display_name %></td>
+			  		<td><%= variable.description %></td>
+			  		<td><%= variable.kind %></td>
+			  	</tr>
+		  	<% end %>
 	  	<% end %>
 	  </tbody>
 	</table>

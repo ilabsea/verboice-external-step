@@ -2,26 +2,38 @@ class Operator < ActiveRecord::Base
 	validates :code, :name, presence: true
 	serialize :prefixes, Array
 
-	SEPERATOR_DELIMETER = ","
-	SEPERATOR_DELIMETER_DISPLAY = ", "
+	SEPERATOR = ","
+	SEPERATOR_DISPLAY = ", "
 
 	OTHER = 'other'
 
-	def self.other
-		find_by_name(OTHER)
-	end
+	class << self
+		def other
+			find_by_name(OTHER)
+		end
 
-	def self.get area_code:
-    operator = nil
+		def get area_code:
+	    operator = nil
 
-    all.each do |op|
-    	if op.exist? area_code
-	      operator = op
-	      break
+	    all.each do |op|
+	    	if op.exist? area_code
+		      operator = op
+		      break
+		    end
 	    end
-    end
 
-    operator
+	    operator
+		end
+
+		def update_prefix_setting operators:
+			operators.each do |name, value|
+				operator = find_by_name(name)
+				if value || (!value.present? && !operator.prefixes.empty?)
+					prefixes = value.split(SEPERATOR)
+					operator.update_attributes(prefixes: prefixes)
+				end
+			end
+		end
 	end
 
 	def exist? area_code

@@ -1,29 +1,17 @@
-class Step
-  attr_accessor :name, :display_name, :icon, :type
+class Step < ActiveRecord::Base
+	validates :name, :display_name, :url, presence: true
+	validates :name, uniqueness: true
+	validates_format_of :url, with: URI.regexp
 
-  def initialize
-    @icon = 'medicalkit'
-    @type = 'callback'
-  end
+	has_many :variables, class_name: StepVariable, dependent: :destroy
 
-  def config_settings
-    raise 'You need to redefine this in your class'
-  end
+	accepts_nested_attributes_for :variables
 
-  def config_response
-    raise 'You need to redefine this in your class'
-  end
+	DETECT_MOBILE_OPERATOR = 'detect_mobile_operator'
 
-  def self.create_definition_with(name:)
-    definition_type(name: name).new
-  end
-
-  def self.create_definitions_with(name:)
-    name.split(",").map { |definition_name| create_definition_with(name: definition_name) }
-  end
-
-  def self.definition_type(name:)
+  def self.type(name:)
     step_name = name.camelize
     "Steps::#{step_name}".constantize
   end
+
 end

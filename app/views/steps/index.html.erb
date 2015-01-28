@@ -4,7 +4,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Description</th>
-			<th>Manifest</th>
+			<th>Url</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -12,7 +12,7 @@
 			<tr>
 				<td><%= link_to step.display_name, edit_step_path(step.name) %></td>
 				<td><%= step.description %></td>
-				<td><%= step.manifest %></td>
+				<td><%= link_to step.url, step.url %></td>
 			</tr>
 		<% end %>
 	</tbody>
