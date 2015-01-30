@@ -1,0 +1,18 @@
+<div class='project'>
+	<strong class='caption'>Project</strong>
+	<br />
+
+	<% if step.project_id.nil? %>
+		<div class='new'>
+		<%= form_tag("/steps/#{@step['name']}/update_project", class: 'form', method: :put) do %>
+				<div class="col-sm-4">
+		    	<%= select_tag "step[project_id]", options_for_select(Service::Project.collection), prompt: '--- select ---', class: ' form-control' %>
+		  	</div>
+		  	<%= submit_tag "Save", class: 'col-sm-2 btn btn-primary btn-sm' %>
+		<% end %>
+	<% else %>
+		<div class='edit'>
+			<span class='col-sm-2'><strong><%= Service::Project.fetch(step.project_id).try(:name) %></strong></span>
+			<span><%= link_to 'Delete', destroy_project_step_path(step['name']), method: :delete, confirm: 'Are you sure you want to remove project', class: 'btn btn-danger btn-xs' %></span>
+	<% end %>
+</div>

@@ -6,6 +6,8 @@
 	<p><%= @step.description %></p>
 </div>
 
+<%= render 'project_settings', step: @step %>
+
 <%= render 'table', title: 'inputs', variables: @step.variables.incoming %>
 <%= render 'table', title: 'outputs', variables: @step.variables.outgoing %>
 

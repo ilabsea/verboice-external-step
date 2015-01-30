@@ -18,12 +18,35 @@ class StepsController < ApplicationController
 		redirect_to steps_path, notice: "Step #{params[:id]} has been updated"
 	end
 
+	def update_project
+		step = Step.find_by_name(params[:id])
+		if step.update_attributes(protected_project_params)
+			redirect_to steps_path, notice: "Step #{params[:id]} has been updated"
+		else
+			flash.now[:alert] = 'Fail to update project'
+			render :edit
+		end
+	end
+
+	def destroy_project
+		step = Step.find_by_name(params[:id])
+		if step.update_attributes(project_id: nil)
+			redirect_to steps_path, notice: "Step #{params[:id]}'s project has been removed"
+		end
+	end
+
 	def manifest
 		@step = Step.find_by_name(params[:id])
 	end
 
   def result
     render json: Step.type(name: params[:id]).response(params)
+  end
+
+  private
+
+  def protected_project_params
+  	params.require(:step).permit(:project_id)
   end
 
 end

@@ -21,15 +21,15 @@
 	  			<td><%= rating.numbers.join(IloRating::SEPERATOR_DISPLAY) %></td>
 
 	  			<td>
-	  				<span><%= link_to 'Edit', edit_ilo_rating_path(rating), class: 'btn btn-primary btn-sm' %></span>
-	  				<span><%= link_to 'Remove', rating, method: :delete, confirm: 'Are you sure you want to delete?', class: 'btn btn-danger btn-sm' %></span>
+	  				<span><%= link_to 'Edit', edit_ilo_rating_path(rating), class: 'btn btn-primary btn-xs' %></span>
+	  				<span><%= link_to 'Remove', rating, method: :delete, confirm: 'Are you sure you want to delete?', class: 'btn btn-danger btn-xs' %></span>
 	  			</td>
 		  	</tr>
 	  	<% end %>
 	  </tbody>
 	</table>
 
-	<%= link_to 'New rating', new_ilo_rating_path, class: 'btn btn-primary' %>
+	<%= link_to 'New rating', new_ilo_rating_path, class: 'btn btn-primary btn-sm' %>
 </div>
 
 
