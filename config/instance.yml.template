@@ -1,7 +1,7 @@
 default: &default
-  name: localhost
-  url: http://localhost:3000
-  end_point: http://localhost:3000/api2
+  name: http://192.168.1.141:3000/
+  url: http://192.168.1.141:3000/
+  end_point: http://192.168.1.141:3000/api2
 
 development:
   <<: *default
