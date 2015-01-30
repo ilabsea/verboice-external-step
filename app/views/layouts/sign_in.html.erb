@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='reminder'>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -11,29 +11,17 @@
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= render 'layouts/config' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
-  <body ng-controller="BaseController" ng-init="init()">
+  <body>
 
     <%= render 'layouts/nav_bar' %>
 
     <div class="container app-container">
-      <div class="main-content">
-        <div class='notification'>
-          <%= render 'layouts/flash' %>
-        </div>
-
-        <% if user_signed_in? %>
-          <div class='breadcrumbs'>
-            <%= render 'layouts/breadcrumb' %>
-          </div>
-        <% end %>
-      
-        <%= yield %>
-      </div>
-
+      <div class="main-content"> <%= yield %> </div>
+      <%= render 'layouts/notification' %>
       <%= render 'layouts/footer' %>
     </div>
   </body>

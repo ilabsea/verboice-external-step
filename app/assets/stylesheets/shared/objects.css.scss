@@ -79,3 +79,14 @@ footer.copyright {
 .bold {
   font-weight: bold;
 }
+
+#notification {
+  right: 25px;
+  top: 65px;
+  border: 1px solid #eee;
+  position: fixed;
+  display: block;
+  z-index: 9999;
+  min-width: 320px;
+  border-radius: 5px;
+}

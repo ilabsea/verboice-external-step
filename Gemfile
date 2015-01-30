@@ -44,6 +44,8 @@ gem 'addressable'
 gem "therubyracer"
 gem "less-rails" 
 gem "exception_handler"
+gem "kaminari"
+gem 'twitter-typeahead-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
