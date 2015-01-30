@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Operator, :type => :model do
-	before(:each) do
+  before(:each) do
     create(:operator, name: 'mobitel', code: 1, prefixes: ["012", "017", "092", "089", "077", "078", "011", "099"])
     create(:operator, name: 'smart', code: 2, prefixes: ["010", "093", "086", "096"])
     create(:operator, name: 'beeline', code: 3, prefixes: ["090", "067", "068"])

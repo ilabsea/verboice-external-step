@@ -38,12 +38,14 @@ class Operator < ActiveRecord::Base
 
 	def exist? area_code
 		found = false
+
 		prefixes.each do |prefix|
     	if prefix.to_i == area_code.to_i
        	found = true
        	break
        end
     end
+    
     found
 	end
 

@@ -1,0 +1,42 @@
+<div class="collapse-group ilo-rating-setting w500">
+	<h3><%= title %></h3>
+		<div class="panel-body">
+			<%= form_for(@rating, html: { class: 'form' }) do |f| %>
+				<div class='form-group clearfix'>
+					<%= f.label :client_from_date, 'From', class: 'col-sm-3 control-label required' %>
+					<div class="col-sm-4">
+						<%= f.text_field :client_from_date, value: @rating.try(:from_date).try(:to_string), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off', readonly: action == 'Save' ? false : true %>
+					</div>
+				</div>
+
+				<div class='form-group clearfix'>
+					<%= f.label :client_to_date, 'To', class: 'col-sm-3 control-label required' %>
+					<div class="col-sm-4">
+						<%= f.text_field :client_to_date, value: @rating.try(:to_date).try(:to_string), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off', readonly: action == 'Save' ? false : true %>
+					</div>
+				</div>
+
+				<div class='form-group clearfix'>
+					<%= f.label :code, class: 'col-sm-3 control-label required' %>
+					<div class="col-sm-2">
+						<%= f.text_field :code, maxlength: 2, class: 'form-control ilo-rating-code required' %>
+					</div>
+				</div>
+
+				<div class='form-group clearfix'>
+					<%= f.label :description, class: 'col-sm-3 control-label' %>
+					<div class="col-sm-9">
+						<%= f.text_field :description, class: 'form-control' %>
+					</div>
+				</div>
+
+				<div class='form-group'>
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+		      	<%= submit_tag action, class: 'btn btn-primary' %>
+		      </div>
+		    </div>
+			<% end %>
+
+	  </div>
+</div>

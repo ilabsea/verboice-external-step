@@ -6,6 +6,20 @@ class Tel
     @number = number
   end
 
+  def without_prefix
+    result = nil
+
+    PREFIXES.each do |prefix|
+      prefix_number = @number[0...prefix.length]
+      if prefix == prefix_number
+        result = @number[prefix.length..-1]
+        break
+      end
+    end
+    
+    result
+  end
+
   def area_code
     area_code = nil
 
@@ -20,10 +34,9 @@ class Tel
     area_code
   end
 
-  def operator_code
-    operator = Operator.get(area_code: area_code)
-    operator = Operator.other if operator.nil?
-    operator.code
+  def operator
+    op = Operator.get(area_code: area_code)
+    op.nil? ? Operator.other : op
   end
 
 end

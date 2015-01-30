@@ -8,6 +8,7 @@ class Step < ActiveRecord::Base
 	accepts_nested_attributes_for :variables
 
 	DETECT_MOBILE_OPERATOR = 'detect_mobile_operator'
+	ILO_RATING = 'ilo_rating'
 
   def self.type(name:)
     step_name = name.camelize

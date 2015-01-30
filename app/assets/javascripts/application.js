@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+
 //= require lib/jquery.control-key-.1.0
+//= require lib/bootstrap-datepicker
 
 //= require bootstrap-sprockets
 

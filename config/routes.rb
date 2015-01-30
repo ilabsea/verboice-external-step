@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     post :result, on: :member, defaults: { format: :json }
   end
 
+  resources :ilo_ratings, except: [:index]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   after_action :track_previous_page
   before_action :authenticate_user!
 
-
   helper_method :current_access, :user_signed_in?, :instance
 
   def sign_in auth

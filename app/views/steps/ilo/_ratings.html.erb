@@ -1,0 +1,35 @@
+<div class='ilo-rating'>
+	<table class="table table-bordered">
+		<caption><strong>Rating</strong></caption>
+	  <thead>
+	  	<tr>
+	  		<th class='col-sm-1'>Code</th>
+	  		<th class='col-sm-2'>From</th>
+	  		<th class='col-sm-2'>To</th>
+	  		<th class='col-sm-2'>Message Sequence</th>
+  			<th class='col-sm-2'>Number</th>
+  			<th></th>
+	  	</tr>
+	  </thead>
+	  <tbody>
+	  	<% IloRating.all.each do |rating| %>
+	  		<tr>
+	  			<td><%= rating.code %></td>
+		  		<td><%= rating.from_date %></td>
+		  		<td><%= rating.to_date %></td>
+		  		<td><%= rating.description %></td>
+	  			<td><%= rating.numbers.join(IloRating::SEPERATOR_DISPLAY) %></td>
+
+	  			<td>
+	  				<span><%= link_to 'Edit', edit_ilo_rating_path(rating), class: 'btn btn-primary btn-sm' %></span>
+	  				<span><%= link_to 'Remove', rating, method: :delete, confirm: 'Are you sure you want to delete?', class: 'btn btn-danger btn-sm' %></span>
+	  			</td>
+		  	</tr>
+	  	<% end %>
+	  </tbody>
+	</table>
+
+	<%= link_to 'New rating', new_ilo_rating_path, class: 'btn btn-primary' %>
+</div>
+
+
