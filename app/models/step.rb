@@ -4,6 +4,7 @@ class Step < ActiveRecord::Base
 	validates_format_of :url, with: URI.regexp
 
 	has_many :variables, class_name: StepVariable, dependent: :destroy
+  has_many :step_permissions, dependent: :destroy
 
 	accepts_nested_attributes_for :variables
 

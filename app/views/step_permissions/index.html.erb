@@ -1,0 +1,21 @@
+<h3> <%= "Step: #{@step.name} (#{@step.description})" %> </h3>
+
+<%= render 'search', step: @step %>
+
+<h3> List of users in this step</h3>
+
+<div class='panel panel-default'>
+<table class='table' id='step-permissions-list' >
+  <thead>
+    <tr>
+      <td>Email</td>
+      <td width='100'> Action</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @step_permissions %>
+  </tbody>
+
+</table>
+</div>

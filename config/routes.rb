@@ -15,12 +15,18 @@ Rails.application.routes.draw do
     delete :destroy_project, on: :member
     get :manifest, on: :member, defaults: { format: :xml }
     post :result, on: :member, defaults: { format: :json }
+
+    resources :step_permissions
+
   end
 
   resources :ilo_ratings, except: [:index] do
     get :show_sync, on: :member
     put :sync, on: :member
   end
+
+  resources :accounts, only: [:index]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

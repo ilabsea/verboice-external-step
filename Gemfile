@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.5'
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -44,6 +44,8 @@ gem 'addressable'
 gem "therubyracer"
 gem "less-rails" 
 gem "exception_handler"
+gem "kaminari"
+gem 'twitter-typeahead-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'

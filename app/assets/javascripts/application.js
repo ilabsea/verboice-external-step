@@ -17,5 +17,9 @@
 //= require lib/bootstrap-datepicker
 
 //= require bootstrap-sprockets
+//= require twitter/typeahead
+//= require tmpl
 
-//= require_tree .
+//= require step_permissions
+//= require notification
+

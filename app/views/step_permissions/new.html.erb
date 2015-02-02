@@ -1,0 +1,13 @@
+<div class="input-group">
+    <input type='text'
+           id='step_permission_user' 
+           class='form-control typeahead'
+           placeholder='User email'
+           data-url='<%= accounts_path(format: :json)%>' />
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button"> Add </button>
+    </span>
+  </div><!-- /input-group -->
+</div>
+
+<input type='hidden' id='step_permission_user_value' class='form-control'/>

@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20150202065014) do
 
   add_index "operators", ["name"], name: "index_operators_on_name", unique: true, using: :btree
 
+  create_table "step_permissions", force: true do |t|
+    t.integer  "step_id"
+    t.integer  "user_id"
+    t.string   "user_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "step_permissions", ["step_id"], name: "index_step_permissions_on_step_id", using: :btree
+
   create_table "step_variables", force: true do |t|
     t.string   "name"
     t.string   "display_name"
