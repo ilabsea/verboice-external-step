@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :step do
     name "MyString"
-display_name "MyString"
-description "MyText"
-manifest "MyText"
+    display_name "MyString"
+    description "MyText"
+    url "http://localhost"
   end
 
 end

@@ -28,7 +28,7 @@ class IloRating < ActiveRecord::Base
         if r.has_date? date
           code = r.code
 
-          if r.has_number? tel.without_prefix
+          if r.has_telephone? tel
             code = EXISTING
           end
 
@@ -39,11 +39,11 @@ class IloRating < ActiveRecord::Base
       code
     end
 
-    def get date:, tel:
+    def get date:
       rating = nil
 
       all.each do |r|
-        rating = r if r.exist? date: date, tel: tel
+        rating = r if r.has_date? date
         break
       end
 
@@ -67,7 +67,7 @@ class IloRating < ActiveRecord::Base
     found = false
 
     if has_date?(date)
-      if has_number?(tel.without_prefix)
+      if has_telephone?(tel)
         found = true
       end
     end
@@ -79,8 +79,8 @@ class IloRating < ActiveRecord::Base
     date.between?(from_date, to_date)
   end
 
-  def has_number? number
-    numbers.include?(number)
+  def has_telephone? tel
+    numbers.include?(tel.without_prefix)
   end
 
   def addresses
@@ -116,12 +116,19 @@ class IloRating < ActiveRecord::Base
         is_modified = true
         number_without_voip = answer.call_log[:prefix_called_number] ? answer.call_log[:address][answer.call_log[:prefix_called_number].length..-1] : answer.call_log[:address]
         tel = Tel.new number_without_voip
-        numbers.push(tel.without_prefix) unless has_number?(tel.without_prefix)
+        register! tel
       end
     end
 
     save if is_modified
 
+  end
+
+  def register! tel
+    unless has_telephone?(tel)
+      numbers.push tel.without_prefix
+      save
+    end
   end
 
 end
