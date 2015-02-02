@@ -3,7 +3,7 @@
     <li class="dropdown">
       <% if user_signed_in? %>
         <a data-toggle="dropdown" class="dropdown-toggle blog-nav-item" href="#">
-          <%= current_access['email'] %><b class="caret"></b>
+          <%= current_access.email %><b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li>

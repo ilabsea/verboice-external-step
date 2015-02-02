@@ -14,23 +14,19 @@ class SessionsController < ApplicationController
     @login_form = LoginForm.new session_params
 
     if(@login_form.valid?)
-      auth = Session.login(session_params[:email], session_params[:password])
-      if(Session.success?)
-          sign_in(auth)
-          redirect_to root_path
-      else
+      begin
+        authentication = Service::Authentication.new(session_params[:email], session_params[:password])
+        account = authentication.login!
+        sign_in_and_redirect_for(account)
+      rescue Service::ApiException => e
         flash.now[:alert]  = "Incorrect username or password"
         render_new
       end
-    else
-      flash.now[:alert]  = "Incorrect username or password"
-      render_new
     end
   end
 
   def destroy
-    sign_out
-    redirect_to sign_in_path
+    sign_out_and_redirect_for(current_access)
   end
 
   def session_params
