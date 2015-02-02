@@ -21,30 +21,14 @@ class IloRating < ActiveRecord::Base
   EXISTING = 999
 
   class << self
-    def get_code date:, tel:
-      code = NON_EXISTING
-
-      all.each do |r|
-        if r.has_date? date
-          code = r.code
-
-          if r.has_telephone? tel
-            code = EXISTING
-          end
-
-          break
-        end
-      end
-
-      code
-    end
-
     def get date:
       rating = nil
 
       all.each do |r|
-        rating = r if r.has_date? date
-        break
+        if r.has_date? date
+          rating = r 
+          break
+        end
       end
 
       rating
@@ -129,6 +113,10 @@ class IloRating < ActiveRecord::Base
       numbers.push tel.without_prefix
       save
     end
+  end
+
+  def get_code_of tel: tel
+    has_telephone?(tel) ? EXISTING : code
   end
 
 end
