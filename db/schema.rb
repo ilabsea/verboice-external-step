@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130094637) do
+ActiveRecord::Schema.define(version: 20150202065014) do
 
   create_table "ilo_ratings", force: true do |t|
     t.date     "from_date"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 20150130094637) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "step_id"
-  end
-
-  create_table "instances", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "end_point"
-    t.boolean  "default",    default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "operators", force: true do |t|

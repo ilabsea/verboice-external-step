@@ -12,20 +12,26 @@
 	  	</tr>
 	  </thead>
 	  <tbody>
-	  	<% IloRating.all.each do |rating| %>
+	  	<% if @ratings.empty? %>
 	  		<tr>
-	  			<td><%= rating.code %></td>
-		  		<td><%= rating.from_date %></td>
-		  		<td><%= rating.to_date %></td>
-		  		<td><%= rating.description %></td>
-	  			<td><%= rating.numbers.join(IloRating::SEPERATOR_DISPLAY) %></td>
+	  			<td colspan='6'>No records</td>
+	  		</tr>
+	  	<% else %>
+	  		<% @ratings.each do |rating| %>
+		  		<tr>
+		  			<td><%= rating.code %></td>
+			  		<td><%= rating.from_date.to_string %></td>
+			  		<td><%= rating.to_date.to_string %></td>
+			  		<td><%= rating.description %></td>
+		  			<td><%= rating.numbers.join(IloRating::SEPERATOR_DISPLAY) %></td>
 
-	  			<td>
-	  				<span><%= link_to 'Edit', edit_ilo_rating_path(rating), class: 'btn btn-primary btn-xs' %></span>
-	  				<span><%= link_to 'Remove', rating, method: :delete, confirm: 'Are you sure you want to delete?', class: 'btn btn-danger btn-xs' %></span>
-	  				<span><%= link_to 'Sync', show_sync_ilo_rating_path(rating), class: 'btn btn-info btn-xs' %></span>
-	  			</td>
-		  	</tr>
+		  			<td>
+		  				<span><%= link_to 'Edit', edit_ilo_rating_path(rating), class: 'btn btn-primary btn-xs' %></span>
+		  				<span><%= link_to 'Remove', rating, method: :delete, confirm: 'Are you sure you want to delete?', class: 'btn btn-danger btn-xs' %></span>
+		  				<span><%= link_to 'Sync', show_sync_ilo_rating_path(rating), class: 'btn btn-info btn-xs' %></span>
+		  			</td>
+			  	</tr>
+		  	<% end %>
 	  	<% end %>
 	  </tbody>
 	</table>

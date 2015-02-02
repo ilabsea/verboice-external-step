@@ -6,10 +6,6 @@ module Authenticable
     after_action :track_previous_page
   end
 
-  def self.authenticate_user
-    before_action :authenticate_user!
-  end
-
   def sign_in account
     session[:account] = Marshal.dump(account)
   end

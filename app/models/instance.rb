@@ -1,15 +1,16 @@
-class Instance < ActiveRecord::Base
-  validates :name, :url, :end_point, :default, presence: true
-  validates_uniqueness_of :url, :end_point
-  validates_format_of :url, :end_point, with: URI.regexp
+class Instance
+  include ActiveModel::Model
 
-  @@default = nil
-
-  MINIMUM = 1 # must be at least one
+  attr_accessor :name, :url, :end_point
 
   def self.default
-  	@@default = where(default: true).first if @@default.nil?
-  	@@default
+    Instance.new name: Instance.config['name'], url: Instance.config['url'], end_point: Instance.config['end_point']
+  end
+
+  def self.config
+    path = File.join(Rails.root, 'config', 'instance.yml')
+    @@config ||= File.exists?(path) ? YAML::load(File.open(path))[Rails.env] : {}
   end
 
 end
+

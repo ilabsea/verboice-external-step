@@ -13,6 +13,6 @@
 	<% else %>
 		<div class='edit'>
 			<span class='col-sm-2'><strong><%= Service::Project.fetch(step.project_id).try(:name) %></strong></span>
-			<span><%= link_to 'Delete', destroy_project_step_path(step['name']), method: :delete, confirm: 'Are you sure you want to remove project', class: 'btn btn-danger btn-xs' %></span>
+			<span><%= link_to 'Remove', destroy_project_step_path(step['name']), method: :delete, confirm: 'Are you sure you want to remove project', class: 'btn btn-danger btn-xs' %></span>
 	<% end %>
 </div>
