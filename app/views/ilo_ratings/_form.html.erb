@@ -2,6 +2,7 @@
 	<h3><%= title %></h3>
 		<div class="panel-body">
 			<%= form_for(@rating, html: { class: 'form' }) do |f| %>
+				<%= f.hidden_field :step_id %>
 				<div class='form-group clearfix'>
 					<%= f.label :client_from_date, 'From', class: 'col-sm-3 control-label required' %>
 					<div class="col-sm-4">

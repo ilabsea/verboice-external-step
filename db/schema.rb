@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130045841) do
+ActiveRecord::Schema.define(version: 20150130094637) do
 
   create_table "ilo_ratings", force: true do |t|
     t.date     "from_date"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150130045841) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "step_id"
   end
 
   create_table "instances", force: true do |t|

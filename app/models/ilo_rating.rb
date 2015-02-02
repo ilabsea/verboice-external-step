@@ -1,6 +1,8 @@
 class IloRating < ActiveRecord::Base
-	validates :code, presence: true
+	validates :code, :step_id, presence: true
 	serialize :numbers, Array
+
+	belongs_to :step
 
 	validates :code, uniqueness: true
 	validates :code, length: { maximum: 2 }
@@ -103,6 +105,23 @@ class IloRating < ActiveRecord::Base
 
 	def client_to_date=(val)
 		@client_to_date = val
+	end
+
+	def sync_numbers_with variable_id:
+		is_modified = false
+
+		call_log_answers = Service::CallLogAnswer.fetch_by project_id: step.project_id, variable_id: variable_id, from: from_date.to_string('%Y-%m-%d'), to: to_date.to_string('%Y-%m-%d')
+		call_log_answers.each do |answer|
+			if answer.value
+				is_modified = true
+				number_without_voip = answer.call_log[:prefix_called_number] ? answer.call_log[:address][answer.call_log[:prefix_called_number].length..-1] : answer.call_log[:address]
+				tel = Tel.new number_without_voip
+				numbers.push(tel.without_prefix) unless has_number?(tel.without_prefix)
+			end
+		end
+
+		save if is_modified
+
 	end
 
 end
