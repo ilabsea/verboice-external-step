@@ -5,7 +5,7 @@ class IloRating < ActiveRecord::Base
   belongs_to :step
 
   validates :code, uniqueness: true
-  validates :code, length: { maximum: 2 }
+  validates :code, numericality: { greater_than: 0, less_than: 100 }
 
   attr_accessor :client_from_date, :client_to_date, :addresses
 
