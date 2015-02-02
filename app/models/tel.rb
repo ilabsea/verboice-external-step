@@ -7,7 +7,7 @@ class Tel
   end
 
   def without_prefix
-    result = nil
+    result = @number
 
     PREFIXES.each do |prefix|
       prefix_number = @number[0...prefix.length]
