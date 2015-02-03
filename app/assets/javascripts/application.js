@@ -20,6 +20,10 @@
 //= require twitter/typeahead
 //= require tmpl
 
+//= require global
+
 //= require step_permissions
 //= require notification
+//= require ilo_ratings
+//= require steps
 
