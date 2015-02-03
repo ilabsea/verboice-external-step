@@ -12,7 +12,7 @@ class Operator < ActiveRecord::Base
 			find_by_name(OTHER)
 		end
 
-		def get area_code:
+		def get(area_code:)
 	    operator = nil
 
 	    all.each do |op|
@@ -25,7 +25,7 @@ class Operator < ActiveRecord::Base
 	    operator
 		end
 
-		def update_prefix_setting operators:
+		def update_prefix_setting(operators:)
 			operators.each do |name, value|
 				operator = find_by_name(name)
 				if value || (!value.present? && !operator.prefixes.empty?)

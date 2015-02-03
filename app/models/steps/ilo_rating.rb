@@ -9,7 +9,7 @@ module Steps
       "{\"result\": \"#{code}\"}"
     end
 
-    def self.get_code_of date:, tel:
+    def self.get_code_of(date:, tel:)
       rating = ::IloRating.get(date: date)
       rating.nil? ? ::IloRating::NON_EXISTING : rating.get_code_of(tel: tel)
     end

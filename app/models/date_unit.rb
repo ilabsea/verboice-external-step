@@ -1,6 +1,6 @@
 class DateUnit
 
-	def initialize unit:, value:
+	def initialize(unit:, value:)
 		@unit = unit
 		@value = value
 	end

@@ -21,7 +21,7 @@ class IloRating < ActiveRecord::Base
   EXISTING = 999
 
   class << self
-    def get date:
+    def get(date:)
       rating = nil
 
       all.each do |r|
@@ -47,7 +47,7 @@ class IloRating < ActiveRecord::Base
     end
   end
 
-  def exist? tel:, date:
+  def exist?(tel:, date:)
     found = false
 
     if has_date?(date)
@@ -91,7 +91,7 @@ class IloRating < ActiveRecord::Base
     @client_to_date = val
   end
 
-  def sync_numbers_with variable_id:
+  def sync_numbers_with(variable_id:)
     is_modified = false
 
     call_log_answers = Service::CallLogAnswer.fetch_by step.project_id, variable_id, from_date.to_string('%Y-%m-%d'), to_date.to_string('%Y-%m-%d')
@@ -115,7 +115,7 @@ class IloRating < ActiveRecord::Base
     end
   end
 
-  def get_code_of tel: tel
+  def get_code_of(tel: tel)
     has_telephone?(tel) ? EXISTING : code
   end
 
