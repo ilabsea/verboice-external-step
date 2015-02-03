@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202065014) do
-
-  create_table "ilo_ratings", force: true do |t|
-    t.date     "from_date"
-    t.date     "to_date"
-    t.text     "numbers"
-    t.integer  "code"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "step_id"
-  end
+ActiveRecord::Schema.define(version: 20150203111842) do
 
   create_table "operators", force: true do |t|
     t.string   "name"
@@ -33,6 +22,17 @@ ActiveRecord::Schema.define(version: 20150202065014) do
   end
 
   add_index "operators", ["name"], name: "index_operators_on_name", unique: true, using: :btree
+
+  create_table "period_ratings", force: true do |t|
+    t.date     "from_date"
+    t.date     "to_date"
+    t.text     "numbers"
+    t.integer  "code"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "step_id"
+  end
 
   create_table "step_permissions", force: true do |t|
     t.integer  "step_id"

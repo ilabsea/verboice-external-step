@@ -1,4 +1,4 @@
-class IloRating < ActiveRecord::Base
+class PeriodRating < ActiveRecord::Base
   validates :code, :step_id, presence: true
   serialize :numbers, Array
 
@@ -39,7 +39,7 @@ class IloRating < ActiveRecord::Base
     if client_from_date.present? && client_to_date.present?
       self.from_date = Parser::DateParser.parse(client_from_date)
       self.to_date = Parser::DateParser.parse(client_to_date)
-      IloRating.all.each do |rating|
+      PeriodRating.all.each do |rating|
         if rating.from_date.between?(from_date, to_date) || rating.to_date.between?(from_date, to_date)
           errors.add(:date, 'date range already exists')
         end

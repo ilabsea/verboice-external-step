@@ -12,8 +12,8 @@ class Step < ActiveRecord::Base
 
 	DETECT_MOBILE_OPERATOR = 'detect_mobile_operator'
   DATE = 'DATE'
-	ILO_RATING = 'ilo_rating'
-  NOTIFY_RATING = 'notify_rating'
+	PERIOD_RATING = 'period_rating'
+  STORE_PERIOD_RATING = 'store_period_rating'
 
   def self.type(name:)
     step_name = name.camelize
@@ -21,7 +21,7 @@ class Step < ActiveRecord::Base
   end
 
   def clear_ratings
-    IloRating.destroy_all(step_id: id)
+    PeriodRating.destroy_all(step_id: id)
   end
 
 end

@@ -1,4 +1,4 @@
-<div class="collapse-group ilo-rating-setting w500">
+<div class="collapse-group period-rating-setting w500">
 	<h3><%= title %></h3>
 		<div class="panel-body">
 			<%= form_for(@rating, html: { class: 'form' }) do |f| %>
@@ -20,7 +20,10 @@
 				<div class='form-group clearfix'>
 					<%= f.label :code, class: 'col-sm-3 control-label required' %>
 					<div class="col-sm-2">
-						<%= f.text_field :code, maxlength: 2, class: 'form-control ilo-rating-code required' %>
+						<%= f.text_field :code, maxlength: 2, class: 'form-control period-rating-code required' %>
+					</div>
+					<div class='l-side'>
+						(number only)
 					</div>
 				</div>
 
@@ -34,7 +37,7 @@
 				<div class='form-group'>
 					<div class="col-sm-3"></div>
 					<div class="col-sm-9">
-		      	<%= submit_tag action, class: 'btn btn-primary' %>
+		      	<%= submit_tag 'Save', class: 'btn btn-primary' %>
 		      </div>
 		    </div>
 			<% end %>

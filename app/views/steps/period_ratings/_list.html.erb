@@ -1,4 +1,4 @@
-<div class='ilo-rating'>
+<div class='period-rating'>
 	<table class="table table-bordered">
 		<caption><strong>Rating</strong></caption>
 	  <thead>
@@ -23,12 +23,12 @@
 			  		<td><%= rating.from_date.to_string %></td>
 			  		<td><%= rating.to_date.to_string %></td>
 			  		<td><%= rating.description %></td>
-		  			<td><%= rating.numbers.join(IloRating::SEPERATOR_DISPLAY) %></td>
+		  			<td><%= rating.numbers.join(PeriodRating::SEPERATOR_DISPLAY) %></td>
 
 		  			<td>
-		  				<span><%= link_to 'Edit', edit_ilo_rating_path(rating), class: 'btn btn-primary btn-xs' %></span>
+		  				<span><%= link_to 'Edit', edit_period_rating_path(rating), class: 'btn btn-primary btn-xs' %></span>
 		  				<span><%= link_to 'Remove', rating, method: :delete, confirm: 'Are you sure you want to delete?', class: 'btn btn-danger btn-xs' %></span>
-		  				<span><%= link_to 'Sync', show_sync_ilo_rating_path(rating), class: 'btn btn-info btn-xs' %></span>
+		  				<span><%= link_to 'Sync', show_sync_period_rating_path(rating), class: 'btn btn-info btn-xs' %></span>
 		  			</td>
 			  	</tr>
 		  	<% end %>
@@ -36,7 +36,7 @@
 	  </tbody>
 	</table>
 
-	<%= link_to 'New rating', new_ilo_rating_path, class: 'btn btn-primary btn-sm' %>
+	<%= link_to 'New period rating', new_period_rating_path, class: 'btn btn-primary btn-sm' %>
 </div>
 
 

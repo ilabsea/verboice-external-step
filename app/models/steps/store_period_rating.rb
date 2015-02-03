@@ -1,10 +1,9 @@
 module Steps
-  class NotifyRating
-
+  class StorePeriodRating
     def self.response options={}
       tel = Tel.new(options[:address])
       now = ::Date.today
-      rating = ::IloRating.get(date: now)
+      rating = ::PeriodRating.get(date: now)
 
       is_registered = 0
       if rating
@@ -14,6 +13,5 @@ module Steps
             
       "{\"result\": \"#{is_registered}\"}"
     end
-
   end
 end

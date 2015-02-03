@@ -24,6 +24,6 @@
 
 //= require step_permissions
 //= require notification
-//= require ilo_ratings
+//= require period_ratings
 //= require steps
 

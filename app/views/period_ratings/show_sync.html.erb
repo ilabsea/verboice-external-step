@@ -1,7 +1,7 @@
-<div class="collapse-group ilo-rating-setting w500">
+<div class="collapse-group period-rating-setting w500">
     <div class="panel-body">
-      <div class='ilo-raing-info'>
-        <%= form_tag(sync_ilo_rating_path(@rating), method: :put, class: 'form') do |f| %>
+      <div class='period-raing-info'>
+        <%= form_tag(sync_period_rating_path(@rating), method: :put, class: 'form') do |f| %>
           <div class='form-group clearfix'>
           <%= label_tag :client_from_date, 'From', class: 'col-sm-3 control-label required' %>
           <span class='col-sm-2'><%= @rating.try(:from_date).try(:to_string) %></span>
@@ -24,9 +24,9 @@
 
 
         <div class='form-group clearfix'>
-          <%= label_tag 'ilo_rating[variable_id]', 'Variable', class: 'col-sm-3 control-label' %>
+          <%= label_tag 'period_rating[variable_id]', 'Variable', class: 'col-sm-3 control-label' %>
           <div class="col-sm-9">
-            <%= select_tag 'ilo_rating[variable_id]', options_for_select(@variables), prompt: '--- select ---', class: ' form-control' %>
+            <%= select_tag 'period_rating[variable_id]', options_for_select(@variables), prompt: '--- select ---', class: ' form-control' %>
           </div>
         </div>
 

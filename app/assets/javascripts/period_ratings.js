@@ -6,6 +6,6 @@ $(function() {
 	});
 
 	allowKeyInput($(".datepicker"), /[0-9\/]/);
-	allowKeyInput($(".ilo-rating-code"), /[0-9]/);
+	allowKeyInput($(".period-rating-code"), /[0-9]/);
 
 });

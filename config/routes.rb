@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     post :result, on: :member, defaults: { format: :json }
   end
 
-  resources :ilo_ratings, except: [:index] do
+  resources :period_ratings, except: [:index] do
     get :show_sync, on: :member
     put :sync, on: :member
   end

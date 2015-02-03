@@ -37,24 +37,24 @@ Step.create!(
       ]
     )
 
-# Rating
+# Period rating
 Step.create!(
-  name: Step::ILO_RATING,
-  display_name: 'Rating',
-  description: 'Returning the code of rating',
-  url: File.join(ENV['HOST'], '/steps/rating/manifest'),
+  name: Step::PERIOD_RATING,
+  display_name: 'Period Rating',
+  description: 'Returning the code of period rating',
+  url: File.join(ENV['HOST'], "/steps/#{Step::PERIOD_RATING}/manifest"),
   variables_attributes: [
     { name: 'result', display_name: 'Rating code', description: 'Rating code', kind: 'numeric', direction: 'outgoing' }
   ]
 )
 
-# ILO notify Rating
+# Notify period rating
 Step.create!(
-  name: Step::NOTIFY_RATING,
-  display_name: 'Notify Rating',
-  description: 'Notify that caller was rating',
-  url: File.join(ENV['HOST'], '/steps/notify_rating/manifest'),
+  name: Step::STORE_PERIOD_RATING,
+  display_name: 'Store Period Rating',
+  description: 'Store that caller was rating',
+  url: File.join(ENV['HOST'], "/steps/#{Step::STORE_PERIOD_RATING}/manifest"),
   variables_attributes: [
-    { name: 'result', display_name: 'Result', description: 'No response', kind: 'numeric', direction: 'outgoing' }
+    { name: 'result', display_name: 'Result', description: '', kind: 'numeric', direction: 'outgoing' }
   ]
 )

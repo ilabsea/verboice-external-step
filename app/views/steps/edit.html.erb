@@ -13,6 +13,6 @@
 
 <% if params[:id] == Step::DETECT_MOBILE_OPERATOR %>
 	<%= render 'operator_codes', step: @step %>
-<% elsif params[:id] == Step::ILO_RATING %>
-	<%= render 'steps/ilo/ratings', step: @step %>
+<% elsif params[:id] == Step::PERIOD_RATING %>
+	<%= render 'steps/period_ratings/list', step: @step %>
 <% end %>

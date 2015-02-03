@@ -7,7 +7,7 @@ class StepsController < ApplicationController
 	end
 
 	def edit
-    @ratings = IloRating.all if params[:id] == Step::ILO_RATING
+    @ratings = PeriodRating.all if params[:id] == Step::PERIOD_RATING
     @operators = Operator.all if params[:id] == Step::DETECT_MOBILE_OPERATOR
 		@step = Step.find_by_name(params[:id])
 	end
