@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
 operators = [ {name: 'mobitel', code: 1},
               {name: 'smart', code: 2},
               {name: 'beeline', code: 3},
@@ -20,9 +11,50 @@ operators.each do |attrs|
   operator.update_attributes(attrs)
 end
 
+Step.destroy_all
 
-instances=[ { name: "http://192.168.1.141:3000/", url: "http://192.168.1.141:3000/", end_point: "http://192.168.1.141:3000//api2", default: true }]
-instances.each do |attrs|
-  instance = Instance.where(name: attrs[:name]).first_or_initialize
-  instance.update_attributes(attrs)
-end
+# Detect Mobile Operator
+Step.create!(
+  name: Step::DETECT_MOBILE_OPERATOR,
+  display_name: 'Detect Mobile Operator',
+  description: 'Detect Mobile Operator',
+  url: File.join(ENV['HOST'], '/steps/detect_mobile_operator/manifest'),
+  variables_attributes: [
+    { name: 'result', display_name: 'Mobile operator code', description: 'The mobile operator code', kind: 'numeric', direction: 'outgoing' }
+  ]
+)
+
+# Date
+Step.create!(
+      name: Step::DATE,
+      display_name: 'Date',
+      description: 'Returning the current date',
+      url: File.join(ENV['HOST'], '/steps/date/manifest'),
+      variables_attributes: [
+        { name: 'unit', display_name: 'Date unit', description: 'Unit of date(day/week/month/year)', kind: 'date_type', direction: 'incoming' },
+        { name: 'value', display_name: 'Value', description: 'Number of unit(day/week/month/year) ago', kind: 'numeric', direction: 'incoming' },
+        { name: 'result', display_name: 'Date', description: 'Current datetime', kind: 'text', direction: 'outgoing' }
+      ]
+    )
+
+# Rating
+Step.create!(
+  name: Step::ILO_RATING,
+  display_name: 'Rating',
+  description: 'Returning the code of rating',
+  url: File.join(ENV['HOST'], '/steps/rating/manifest'),
+  variables_attributes: [
+    { name: 'result', display_name: 'Rating code', description: 'Rating code', kind: 'numeric', direction: 'outgoing' }
+  ]
+)
+
+# ILO notify Rating
+Step.create!(
+  name: Step::NOTIFY_RATING,
+  display_name: 'Notify Rating',
+  description: 'Notify that caller was rating',
+  url: File.join(ENV['HOST'], '/steps/notify_rating/manifest'),
+  variables_attributes: [
+    { name: 'result', display_name: 'Result', description: 'No response', kind: 'numeric', direction: 'outgoing' }
+  ]
+)
