@@ -3,7 +3,7 @@ class StepsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:manifest, :result]
 
 	def index
-		@steps = Step.all
+		@steps = current_access.steps
 	end
 
 	def edit

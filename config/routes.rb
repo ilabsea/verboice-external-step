@@ -15,9 +15,6 @@ Rails.application.routes.draw do
     delete :destroy_project, on: :member
     get :manifest, on: :member, defaults: { format: :xml }
     post :result, on: :member, defaults: { format: :json }
-
-    resources :step_permissions
-
   end
 
   resources :ilo_ratings, except: [:index] do
@@ -26,6 +23,12 @@ Rails.application.routes.draw do
   end
 
   resources :accounts, only: [:index]
+
+  namespace :admin do
+    resources :steps, only: [:index, :edit, :update] do
+      resources :step_permissions
+    end
+  end
 
 
   # Example of regular route:

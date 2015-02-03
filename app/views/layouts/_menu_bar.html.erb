@@ -1,4 +1,4 @@
 <% if user_signed_in? %>
-	<%= link_to 'Steps', steps_path, class: 'blog-nav-item' %>
+	<%= link_to 'Steps', (current_access.admin? ? admin_steps_path : steps_path), class: 'blog-nav-item' %>
 	<span>|</span>
 <% end %>

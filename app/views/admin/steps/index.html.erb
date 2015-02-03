@@ -5,6 +5,7 @@
 			<th>Name</th>
 			<th>Description</th>
 			<th>Url</th>
+			<th width=120> Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -13,6 +14,12 @@
 				<td><%= link_to step.display_name, edit_step_path(step.name) %></td>
 				<td><%= step.description %></td>
 				<td><%= link_to step.url, step.url %></td>
+				<td>
+				   <%= link_to admin_step_step_permissions_path(step) do %>
+							<i class='glyphicon glyphicon-eye-open'></i> Permission
+				   <% end %>
+
+				</td>
 			</tr>
 		<% end %>
 	</tbody>

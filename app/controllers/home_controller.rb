@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      redirect_to steps_path
+      current_access.admin? ? redirect_to(admin_steps_path) : redirect_to(steps_path)
     else
     	redirect_to sign_in_path
     end

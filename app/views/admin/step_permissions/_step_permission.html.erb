@@ -1,6 +1,6 @@
 <tr>
   <td><%= step_permission.user_email %></td>
-  <td><%= link_to 'Remove', step_step_permission_path(@step, step_permission),
+  <td><%= link_to 'Remove', admin_step_step_permission_path(@step, step_permission),
                   class: 'remove-step-permissions',
                   data: { id: step_permission.id } %></td>
 </tr>

@@ -37,7 +37,7 @@ class IloRatingsController < ApplicationController
 
   def show_sync
     @rating = IloRating.find(params[:id])
-    @variables = Service::ProjectVariable.collection project_id: @rating.step.project_id
+    @variables = Service::ProjectVariable.collection @rating.step.project_id
   end
 
   def sync
