@@ -11,7 +11,7 @@ class Step < ActiveRecord::Base
   before_destroy :clear_ratings
 
 	DETECT_MOBILE_OPERATOR = 'detect_mobile_operator'
-  DATE = 'DATE'
+  DATE = 'date'
 	PERIOD_RATING = 'period_rating'
   STORE_PERIOD_RATING = 'store_period_rating'
   NEW_CALLER = 'new_caller'

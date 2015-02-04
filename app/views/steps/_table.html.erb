@@ -1,27 +1,23 @@
-<div class='table <%= title %>'>
-	<table class="table table-bordered">
-		<caption><strong><%= title.camelize %></strong></caption>
-	  <thead>
-	  	<tr>
-	  		<th>Name</th>
-	  		<th>Description</th>
-	  		<th>Type</th>
-	  	</tr>
-	  </thead>
-	  <tbody>
-	  	<% if variables.empty? %>
-		  	<tr>
-	  			<td colspan='3'>No required</td>
-	  		</tr>
-	  	<% else %>
-	  		<% variables.each do |variable| %>
-			  	<tr>
-			  		<td><%= variable.display_name %></td>
-			  		<td><%= variable.description %></td>
-			  		<td><%= variable.kind %></td>
-			  	</tr>
-		  	<% end %>
-	  	<% end %>
-	  </tbody>
-	</table>
-</div>
+<% unless variables.empty? %>
+  <div class='table <%= title %>'>
+    <table class="table table-bordered">
+      <caption><strong><%= title.camelize %></strong></caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% variables.each do |variable| %>
+          <tr>
+            <td><%= variable.display_name %></td>
+            <td><%= variable.description.html_safe %></td>
+            <td><%= variable.kind %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
