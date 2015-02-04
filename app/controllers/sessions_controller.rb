@@ -12,16 +12,13 @@ class SessionsController < ApplicationController
 
   def create
     @login_form = LoginForm.new session_params
-
-    if(@login_form.valid?)
-      begin
-        authentication = Service::Authentication.new(session_params[:email], session_params[:password])
-        account = authentication.login!
-        sign_in_and_redirect_for(account)
-      rescue Service::ApiException => e
-        flash.now[:alert]  = "Incorrect username or password"
-        render_new
-      end
+    begin
+      authentication = Service::Authentication.new(session_params[:email], session_params[:password])
+      account = authentication.login!
+      sign_in_and_redirect_for(account)
+    rescue Service::ApiException => e
+      flash.now[:alert]  = "Incorrect username or password"
+      render_new
     end
   end
 
