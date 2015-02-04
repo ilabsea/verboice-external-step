@@ -14,6 +14,7 @@ class Step < ActiveRecord::Base
   DATE = 'DATE'
 	PERIOD_RATING = 'period_rating'
   STORE_PERIOD_RATING = 'store_period_rating'
+  NEW_CALLER = 'new_caller'
 
   def self.type(name:)
     step_name = name.camelize

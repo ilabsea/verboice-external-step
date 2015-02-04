@@ -58,3 +58,13 @@ Step.create!(
     { name: 'result', display_name: 'Result', description: '', kind: 'numeric', direction: 'outgoing' }
   ]
 )
+
+Step.create!(
+  name: Step::NEW_CALLER,
+  display_name: 'New caller',
+  description: 'New caller in line',
+  url: File.join(ENV['HOST'], "/steps/#{Step::NEW_CALLER}/manifest"),
+  variables_attributes: [
+    { name: 'result', display_name: 'Result', description: 'Is new caller', kind: 'numeric', direction: 'outgoing' }
+  ]
+)
