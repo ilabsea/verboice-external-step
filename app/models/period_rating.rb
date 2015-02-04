@@ -17,10 +17,20 @@ class PeriodRating < ActiveRecord::Base
   SEPERATOR = ","
   SEPERATOR_DISPLAY = ", "
 
-  NON_EXISTING = 0
-  EXISTING = 999
+  NON_EXISTING_OR_RATED = -1
 
   class << self
+    def get_code_of(date:, tel:)
+      period_rating_code = NON_EXISTING_OR_RATED
+
+      rating = get date: date
+      if rating
+        period_rating_code = rating.code unless rating.has_telephone?(tel)
+      end
+
+      period_rating_code
+    end
+
     def get(date:)
       rating = nil
 
@@ -114,9 +124,4 @@ class PeriodRating < ActiveRecord::Base
       save
     end
   end
-
-  def get_code_of(tel: tel)
-    has_telephone?(tel) ? EXISTING : code
-  end
-
 end

@@ -5,6 +5,24 @@ RSpec.describe PeriodRating, :type => :model do
 		@step = create(:step, name: "rating", display_name: "Rating", description: "Rating")
 	end
 
+	describe 'get code of' do
+		before(:each) do
+			create(:period_rating, client_from_date: '01/01/2015', client_to_date: '31/01/2015', numbers: ['12999999'], code: 1, step_id: @step.id)
+		end
+
+		context 'return -1 when the date is not matches period' do
+			it { expect(PeriodRating.get_code_of date: Date.new(2015,2,1), tel: Tel.new('012999999')).to eq(-1) }
+		end
+
+		context 'return -1 when the date is matches and caller is already rated' do
+			it { expect(PeriodRating.get_code_of date: Date.new(2015,2,1), tel: Tel.new('012999999')).to eq(-1) }
+		end
+
+		context 'return period code when the date is matches but caller is not yet rate' do
+			it { expect(PeriodRating.get_code_of date: Date.new(2015,1,1), tel: Tel.new('012999999')).to eq(-1) }
+		end
+	end
+
 	describe 'create' do
 		context 'parse date string to date' do
 			it {
