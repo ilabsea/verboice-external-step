@@ -15,12 +15,12 @@ Rails.application.routes.draw do
     delete :destroy_project, on: :member
     get :manifest, on: :member, defaults: { format: :xml }
     post :result, on: :member, defaults: { format: :json }
+    put :sync_with_project_variable, on: :member
   end
 
-  resources :period_ratings, except: [:index] do
-    get :show_sync, on: :member
-    put :sync, on: :member
-  end
+  resources :period_ratings, except: [:index]
+
+  resources :project_variables, only: [:index]
 
   resources :accounts, only: [:index]
 

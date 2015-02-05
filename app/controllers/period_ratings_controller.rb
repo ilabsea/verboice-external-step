@@ -35,21 +35,6 @@ class PeriodRatingsController < ApplicationController
     end
   end
 
-  def show_sync
-    @rating = PeriodRating.find(params[:id])
-    @variables = Service::ProjectVariable.collection project_id: @rating.step.project_id
-  end
-
-  def sync
-    @rating = PeriodRating.find(params[:id])
-    if protected_sync_params[:variable_id].present?
-      @rating.sync_numbers_with(variable_id: protected_sync_params[:variable_id])
-      redirect_to edit_step_path(@rating.step.name), notice: "Rating's numbers has been synchronized"
-    else
-      redirect_to show_sync_period_rating_path(@rating), alert: 'Please select variable to sync'
-    end
-  end
-
   private
 
   def protected_advance_params

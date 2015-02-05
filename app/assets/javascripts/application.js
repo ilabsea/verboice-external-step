@@ -26,4 +26,5 @@
 //= require notification
 //= require period_ratings
 //= require steps
+//= require project
 

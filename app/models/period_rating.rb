@@ -101,10 +101,10 @@ class PeriodRating < ActiveRecord::Base
     @client_to_date = val
   end
 
-  def sync_numbers_with(variable_id:)
+  def sync_numbers_with!(project_id:, variable_id:)
     is_modified = false
 
-    call_log_answers = Service::CallLogAnswer.fetch_by project_id: step.project_id, variable_id: variable_id, from: from_date.to_string('%Y-%m-%d'), to: (to_date + 1.day).to_string('%Y-%m-%d')
+    call_log_answers = Service::CallLogAnswer.fetch_by project_id: project_id, variable_id: variable_id, from: from_date.to_string('%Y-%m-%d'), to: (to_date + 1.day).to_string('%Y-%m-%d')
     call_log_answers.each do |answer|
       if answer.value
         is_modified = true
