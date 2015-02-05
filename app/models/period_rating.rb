@@ -12,7 +12,7 @@ class PeriodRating < ActiveRecord::Base
   validates :client_from_date, :"validator/date" => { date_format: Date::DEFAULT_FORMAT, field: :from_date }, if: Proc.new { |record| record.new_record? }
   validates :client_to_date, :"validator/date" => { date_format: Date::DEFAULT_FORMAT, field: :to_date }, if: Proc.new { |record| record.new_record? }
 
-  validate :unique_date_range, on: :create
+  validate :unique_date_range
 
   SEPERATOR = ","
   SEPERATOR_DISPLAY = ", "
@@ -49,7 +49,7 @@ class PeriodRating < ActiveRecord::Base
     if client_from_date.present? && client_to_date.present?
       self.from_date = Parser::DateParser.parse(client_from_date)
       self.to_date = Parser::DateParser.parse(client_to_date)
-      PeriodRating.all.each do |rating|
+      PeriodRating.where.not(id: self.id).each do |rating|
         if rating.from_date.between?(from_date, to_date) || rating.to_date.between?(from_date, to_date)
           errors.add(:date, 'date range already exists')
         end

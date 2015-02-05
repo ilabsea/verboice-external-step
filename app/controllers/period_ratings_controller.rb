@@ -13,17 +13,17 @@ class PeriodRatingsController < ApplicationController
     if @rating.save
       redirect_to edit_step_path(@rating.step.name), notice: 'Rating has been created'
     else
-      flash.now[:alert] = 'Fail to create'
+      flash.now[:alert] = error_for @rating
       render :new, period_rating: @rating
     end
   end
 
   def update
     @rating = PeriodRating.find(params[:id])
-    if @rating.update_attributes(protected_basic_params)
+    if @rating.update_attributes(protected_advance_params)
       redirect_to edit_step_path(@rating.step.name), notice: 'Rating has been updated'
     else
-      flash.now[:alert] = 'Fail to update'
+      flash.now[:alert] = error_for @rating
       render :edit
     end
   end
@@ -47,6 +47,10 @@ class PeriodRatingsController < ApplicationController
 
   def protected_sync_params
     params.require(:period_rating).permit(:variable_id)
+  end
+
+  def error_for record
+    record.errors.full_messages.first
   end
 
 end
