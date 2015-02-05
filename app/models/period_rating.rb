@@ -49,6 +49,9 @@ class PeriodRating < ActiveRecord::Base
     if client_from_date.present? && client_to_date.present?
       self.from_date = Parser::DateParser.parse(client_from_date)
       self.to_date = Parser::DateParser.parse(client_to_date)
+
+      errors.add(:date, 'to_date must be greater than from_date') if self.from_date > self.to_date
+
       PeriodRating.where.not(id: self.id).each do |rating|
         if rating.from_date.between?(from_date, to_date) || rating.to_date.between?(from_date, to_date)
           errors.add(:date, 'date range already exists')
