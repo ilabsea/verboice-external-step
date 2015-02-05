@@ -6,14 +6,14 @@
 				<div class='form-group clearfix'>
 					<%= f.label :client_from_date, 'From', class: 'col-sm-3 control-label required' %>
 					<div class="col-sm-4">
-						<%= f.text_field :client_from_date, value: @rating.try(:from_date).try(:to_string), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off', readonly: action == 'Save' ? false : true %>
+						<%= f.text_field :client_from_date, value: @rating.try(:client_from_date_display), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off' %>
 					</div>
 				</div>
 
 				<div class='form-group clearfix'>
 					<%= f.label :client_to_date, 'To', class: 'col-sm-3 control-label required' %>
 					<div class="col-sm-4">
-						<%= f.text_field :client_to_date, value: @rating.try(:to_date).try(:to_string), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off', readonly: action == 'Save' ? false : true %>
+						<%= f.text_field :client_to_date, value: @rating.try(:client_to_date_display), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off' %>
 					</div>
 				</div>
 
