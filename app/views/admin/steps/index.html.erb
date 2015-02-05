@@ -10,7 +10,7 @@
 	<tbody>
 		<% @steps.each do |step| %>
 			<tr>
-				<td><%= link_to step.display_name, edit_step_path(step.name) %></td>
+				<td><%= step.display_name %></td>
 				<td><%= step.description %></td>
 				<td>
 				   <%= link_to admin_step_step_permissions_path(step) do %>
