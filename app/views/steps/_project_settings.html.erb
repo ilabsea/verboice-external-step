@@ -1,27 +1,34 @@
 <div class='project clearfix'>
-	<% if step.project_id.nil? %>
-		<div class='new'>
-			<%= form_tag("/steps/#{@step['name']}/update_project", method: :put) do %>
-				<div class='col-sm-1'><strong class='caption'>Project:</strong></div>
-				<div class="col-sm-3">
-		    	<%= select_tag "step[project_id]", options_for_select(Service::Project.collection), prompt: '--- select project ---', class: ' form-control' %>
-		  	</div>
-		  	<div class='col-sm-3'>
-		  		<% variables = params[:step] ? Service::ProjectVariable.collection(project_id: params[:step][:project_id]) : [] %>
-            <%= select_tag 'step[variable_id]', options_for_select(variables), prompt: '--- select variable ---', class: ' form-control' %>
+    <div class='project_variable_form <%= step.project_id.nil? ? '' : 'hide' %> clearfix'>
+      <%= form_tag(update_project_variable_step_path(step.name), method: :put) do %>
+        <div class='l-side'><strong class='caption'>Project:</strong></div>
+        <div class="col-sm-3">
+          <%= select_tag "step[project_id]", options_for_select(Service::Project.collection, step.project_id), prompt: '--- select project ---', class: ' form-control' %>
+        </div>
+        <div class='col-sm-1'><strong class='caption'>Variable:</strong></div>
+        <div class='col-sm-3'>
+          <%= select_tag 'step[variable_id]', options_for_select(Service::ProjectVariable.collection(project_id: step.project_id), step.variable_id), prompt: '--- select variable ---', class: ' form-control' %>
         </div>
 
-		  	<div class='col-sm-2'><%= submit_tag "Save", class: 'btn btn-primary btn-sm' %></div>
-			<% end %>
-		</div>
-	<% else %>
-		<div class='edit'>
-			<div class='l-side'><strong class='caption'>Project:</strong></div>
-			<span class='col-sm-2'><%= Service::Project.fetch(step.project_id).try(:name) %></span>
-			<div class='col-sm-1'><strong class='caption'>Variable:</strong></div>
-			<span class='col-sm-2'><%= ProjectVariable.get(project_id: step.project_id, id: step.variable_id).try(:name) %></span>
-			<span><%= link_to 'Remove', destroy_project_step_path(step['name']), method: :delete, confirm: 'Are you sure you want to remove project', class: 'btn btn-danger btn-xs' %></span>
-		</div>
-	<% end %>
+        <div class='col-sm-1'>
+          <%= submit_tag "Save", id: 'project_variable_submit', class: 'btn btn-primary btn-sm' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class='project_variable_view <%= step.project_id.nil? ? 'hide' : '' %> clearfix'>
+        <div class='l-side'><strong class='caption'>Project:</strong></div>
+        <div class="col-sm-2">
+          <%= Service::Project.fetch(step.project_id).try(:name) %>
+        </div>
+        <div class='col-sm-1'><strong class='caption'>Variable:</strong></div>
+        <div class='col-sm-2'>
+          <%= ProjectVariable.get(project_id: step.project_id, id: step.variable_id).try(:name) %>
+        </div>
+
+        <div class='col-sm-1'>
+          <%= button_tag "Edit", id: 'project_variable_button', class: 'btn btn-primary btn-xs' %>
+        </div>
+    </div>
 
 </div>

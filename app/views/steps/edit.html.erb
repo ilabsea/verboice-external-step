@@ -7,7 +7,7 @@
 </div>
 
 <div class='manifest'>
-  <strong class='caption'>Url Manifest:</strong>
+  <strong class='caption'>Url manifest:</strong>
   <%= link_to @step.url, @step.url %>
 </div>
 
@@ -16,6 +16,8 @@
 <% if params[:id] == Step::PERIOD_RATING %>
   <%= render 'project_settings', step: @step %>
 <% end %>
+
+<br />
 
 <%= render 'table', title: 'inputs', variables: @step.variables.incoming %>
 <%= render 'table', title: 'outputs', variables: @step.variables.outgoing %>

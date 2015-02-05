@@ -7,7 +7,16 @@ class Service::Project < ActiveApi
   end
 
   def self.fetch id
-  	where(id: id).first
+    project = nil
+
+    all.each do |p|
+      if p.id == id
+        project = p 
+        break
+      end
+    end
+
+    project
   end
 
 end

@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   delete 'sign_out', to: 'sessions#destroy'
 
   resources :steps, only: [:index, :edit, :update] do
-    put :update_project, on: :member
-    delete :destroy_project, on: :member
+    put :update_project_variable, on: :member
     get :manifest, on: :member, defaults: { format: :xml }
     post :result, on: :member, defaults: { format: :json }
     put :sync_with_project_variable, on: :member

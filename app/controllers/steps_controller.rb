@@ -20,7 +20,7 @@ class StepsController < ApplicationController
     redirect_to steps_path, notice: "Step #{params[:id]} has been updated"
   end
 
-  def update_project
+  def update_project_variable
     is_valid = false
     step = Step.find_by_name(params[:id])
 
@@ -34,13 +34,6 @@ class StepsController < ApplicationController
       redirect_to edit_step_path(step.name), notice: "Step #{params[:id]} has been updated"
     else
       redirect_to edit_step_path(step.name), alert: 'Project and variable is required'
-    end
-  end
-
-  def destroy_project
-    step = Step.find_by_name(params[:id])
-    if step.update_attributes(project_id: nil)
-      redirect_to edit_step_path(step.name), notice: "Step #{params[:id]}'s project has been removed"
     end
   end
 

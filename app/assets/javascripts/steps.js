@@ -19,10 +19,12 @@ $(function() {
 
   allowKeyInput($(".prefix-number"), /[0-9\,]/);
 
-  $(function(){
-    var $projectId = $("#step_project_id");
-    projectChanged($projectId);
-  })
+  var $projectId = $("#step_project_id");
+  projectChanged($projectId);
 
+  $('#project_variable_button').on('click', function() {
+    $('.project_variable_form').removeClass('hide');
+    $('.project_variable_view').addClass('hide');
+  });
 
 });
