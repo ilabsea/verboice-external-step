@@ -5,4 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_access, :user_signed_in?
 
+  add_breadcrumb "Home", :root_path
+
 end

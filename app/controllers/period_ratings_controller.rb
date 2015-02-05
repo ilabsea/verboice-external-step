@@ -1,11 +1,17 @@
 class PeriodRatingsController < ApplicationController
+  add_breadcrumb "Steps", :steps_path
+
   def new
     @step = Step.find_by_name Step::PERIOD_RATING
     @rating = PeriodRating.new step_id: @step.id
+
+    append_breadcrumbs
   end
 
   def edit
     @rating = PeriodRating.find(params[:id])
+
+    append_breadcrumbs
   end
 
   def create
@@ -41,12 +47,9 @@ class PeriodRatingsController < ApplicationController
     params.require(:period_rating).permit(:step_id, :client_from_date, :client_to_date, :code, :description)
   end
 
-  def protected_basic_params
-    params.require(:period_rating).permit(:code, :description)
-  end
-
-  def protected_sync_params
-    params.require(:period_rating).permit(:variable_id)
+  def append_breadcrumbs
+    add_breadcrumb @rating.step.display_name, edit_step_path(@rating.step.name)
+    add_breadcrumb action_name
   end
 
   def error_for record

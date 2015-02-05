@@ -2,6 +2,8 @@ class StepsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:manifest, :result]
   skip_before_action :verify_authenticity_token, only: [:manifest, :result]
 
+  add_breadcrumb 'Steps', :steps_path
+
   def index
     @steps = current_access.steps
   end
@@ -10,6 +12,8 @@ class StepsController < ApplicationController
     @ratings = PeriodRating.all if params[:id] == Step::PERIOD_RATING
     @operators = Operator.all if params[:id] == Step::DETECT_MOBILE_OPERATOR
     @step = Step.find_by_name(params[:id])
+
+    append_breadcrumbs
   end
 
   def update
@@ -64,6 +68,10 @@ class StepsController < ApplicationController
 
   def protected_sync_params
     params.require(:period_rating_id)
+  end
+
+  def append_breadcrumbs
+    add_breadcrumb @step.display_name
   end
 
 end
