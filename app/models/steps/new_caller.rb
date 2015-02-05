@@ -4,10 +4,14 @@ module Steps
       channel_id = options[:channel_id]
       address = options[:address]
 
-      is_exist = ::CallLog.exist?(channel_id: channel_id, address: address) ? 1 : 0
+      begin
+        BackEnd.authenticate_account!
+        is_exist = ::CallLog.exist?(channel_id: channel_id, address: address) ? 0 : 1
+      rescue Service::ApiException => e
+        is_exist = 'unauthorized'
+      end
 
       "{\"result\": \"#{is_exist}\"}"
     end
-
   end
 end

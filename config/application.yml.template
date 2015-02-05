@@ -2,6 +2,9 @@ defaults: &defaults
   APP_NAME: 'Verboice External Step'
   HOST: 'http://192.168.1.141:3000/'
 
+  EMAIL: 'demo@example.com'
+  SECRET: ''
+
 development:
   <<: *defaults
 
