@@ -35,7 +35,7 @@ class Tel
   end
 
   def operator
-    op = Operator.get(area_code: area_code)
+    op = Operator.get(area_code)
     op.nil? ? Operator.other : op
   end
 

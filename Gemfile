@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '1.9.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -79,5 +79,5 @@ group :test, :development do
 
   gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
   gem 'apitome'
-  gem 'byebug'
+  gem 'debugger'
 end

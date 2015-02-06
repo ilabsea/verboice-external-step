@@ -7,7 +7,7 @@
         </div>
         <div class='col-sm-1'><strong class='caption'>Variable:</strong></div>
         <div class='col-sm-3'>
-          <%= select_tag 'step[variable_id]', options_for_select(Service::ProjectVariable.collection(project_id: step.project_id), step.variable_id), prompt: '--- select variable ---', class: ' form-control' %>
+          <%= select_tag 'step[variable_id]', options_for_select(Service::ProjectVariable.collection(step.project_id), step.variable_id), prompt: '--- select variable ---', class: ' form-control' %>
         </div>
 
         <div class='col-sm-1'>
@@ -23,7 +23,7 @@
         </div>
         <div class='col-sm-1'><strong class='caption'>Variable:</strong></div>
         <div class='col-sm-2'>
-          <%= ProjectVariable.get(project_id: step.project_id, id: step.variable_id).try(:name) %>
+          <%= ProjectVariable.get(step.project_id, step.variable_id).try(:name) %>
         </div>
 
         <div class='col-sm-1'>

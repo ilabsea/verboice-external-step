@@ -11,15 +11,15 @@ RSpec.describe PeriodRating, :type => :model do
 		end
 
 		context 'return -1 when the date is not matches period' do
-			it { expect(PeriodRating.get_code_of date: Date.new(2015,2,1), tel: Tel.new('012999999')).to eq(-1) }
+			it { expect(PeriodRating.get_code_of Date.new(2015,2,1), Tel.new('012999999')).to eq(-1) }
 		end
 
 		context 'return -1 when the date is matches and caller is already rated' do
-			it { expect(PeriodRating.get_code_of date: Date.new(2015,2,1), tel: Tel.new('012999999')).to eq(-1) }
+			it { expect(PeriodRating.get_code_of Date.new(2015,2,1), Tel.new('012999999')).to eq(-1) }
 		end
 
 		context 'return period code when the date is matches but caller is not yet rate' do
-			it { expect(PeriodRating.get_code_of date: Date.new(2015,1,1), tel: Tel.new('012999999')).to eq(-1) }
+			it { expect(PeriodRating.get_code_of Date.new(2015,1,1), Tel.new('012999999')).to eq(-1) }
 		end
 	end
 
@@ -59,19 +59,19 @@ RSpec.describe PeriodRating, :type => :model do
 	  end	
 
 	  context 'it should return true when phone number and date is exist in the range' do
-	  	it { expect(@rating.exist?(tel: Tel.new('012999999'), date: Date.parse('2015-01-01'))).to be(true) }
-	  	it { expect(@rating.exist?(tel: Tel.new('85512999999'), date: Date.parse('2015-01-01'))).to be(true) }
-	  	it { expect(@rating.exist?(tel: Tel.new('855012999999'), date: Date.parse('2015-01-01'))).to be(true) }
-	  	it { expect(@rating.exist?(tel: Tel.new('+85512999999'), date: Date.parse('2015-01-01'))).to be(true) }
-	  	it { expect(@rating.exist?(tel: Tel.new('+855012999999'), date: Date.parse('2015-01-01'))).to be(true) }
+	  	it { expect(@rating.exist?(Tel.new('012999999'), Date.parse('2015-01-01'))).to be(true) }
+	  	it { expect(@rating.exist?(Tel.new('85512999999'), Date.parse('2015-01-01'))).to be(true) }
+	  	it { expect(@rating.exist?(Tel.new('855012999999'), Date.parse('2015-01-01'))).to be(true) }
+	  	it { expect(@rating.exist?(Tel.new('+85512999999'), Date.parse('2015-01-01'))).to be(true) }
+	  	it { expect(@rating.exist?(Tel.new('+855012999999'), Date.parse('2015-01-01'))).to be(true) }
 	  end
 
 	  context 'it should return false when date is not exist in the range' do
-	  	it { expect(@rating.exist?(tel: Tel.new('012999999'), date: Date.parse('2014-12-31'))).to be(false) }
-	  	it { expect(@rating.exist?(tel: Tel.new('85512999999'), date: Date.parse('2014-12-31'))).to be(false) }
-	  	it { expect(@rating.exist?(tel: Tel.new('855012999999'), date: Date.parse('2014-12-31'))).to be(false) }
-	  	it { expect(@rating.exist?(tel: Tel.new('+85512999999'), date: Date.parse('2014-12-31'))).to be(false) }
-	  	it { expect(@rating.exist?(tel: Tel.new('+855012999999'), date: Date.parse('2014-12-31'))).to be(false) }
+	  	it { expect(@rating.exist?(Tel.new('012999999'), Date.parse('2014-12-31'))).to be(false) }
+	  	it { expect(@rating.exist?(Tel.new('85512999999'), Date.parse('2014-12-31'))).to be(false) }
+	  	it { expect(@rating.exist?(Tel.new('855012999999'), Date.parse('2014-12-31'))).to be(false) }
+	  	it { expect(@rating.exist?(Tel.new('+85512999999'), Date.parse('2014-12-31'))).to be(false) }
+	  	it { expect(@rating.exist?(Tel.new('+855012999999'), Date.parse('2014-12-31'))).to be(false) }
 	  end
   end
 

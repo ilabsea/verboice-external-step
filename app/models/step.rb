@@ -16,7 +16,7 @@ class Step < ActiveRecord::Base
   STORE_PERIOD_RATING = 'store_period_rating'
   NEW_CALLER = 'new_caller'
 
-  def self.type(name:)
+  def self.type(name)
     step_name = name.camelize
     "Steps::#{step_name}".constantize
   end

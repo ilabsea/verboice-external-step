@@ -4,7 +4,7 @@ module Steps
       tel = Tel.new(options[:address])
       now = ::Date.today
       
-      code = ::PeriodRating.get_code_of date: now, tel: tel
+      code = ::PeriodRating.get_code_of now, tel
 
       "{\"result\": \"#{code}\"}"
     end

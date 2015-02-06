@@ -6,7 +6,7 @@ module Steps
 
       begin
         BackEnd.authenticate_account!
-        is_exist = ::CallLog.exist?(channel_id: channel_id, address: address) ? 0 : 1
+        is_exist = ::CallLog.exist?(channel_id, address) ? 0 : 1
       rescue Service::ApiException => e
         is_exist = 'unauthorized'
       end

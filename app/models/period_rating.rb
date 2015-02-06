@@ -20,10 +20,10 @@ class PeriodRating < ActiveRecord::Base
   NON_EXISTING_OR_RATED = -1
 
   class << self
-    def get_code_of(date:, tel:)
+    def get_code_of(date, tel)
       period_rating_code = NON_EXISTING_OR_RATED
 
-      rating = get date: date
+      rating = get date
       if rating
         period_rating_code = rating.code unless rating.has_telephone?(tel)
       end
@@ -31,7 +31,7 @@ class PeriodRating < ActiveRecord::Base
       period_rating_code
     end
 
-    def get(date:)
+    def get(date)
       rating = nil
 
       all.each do |r|
@@ -60,7 +60,7 @@ class PeriodRating < ActiveRecord::Base
     end
   end
 
-  def exist?(tel:, date:)
+  def exist?(tel, date)
     found = false
 
     if has_date?(date)
@@ -112,10 +112,10 @@ class PeriodRating < ActiveRecord::Base
     @client_to_date = val
   end
 
-  def sync_numbers_with!(project_id:, variable_id:)
+  def sync_numbers_with!(project_id, variable_id)
     is_modified = false
 
-    call_log_answers = Service::CallLogAnswer.fetch_by project_id: project_id, variable_id: variable_id, from: from_date.to_string('%Y-%m-%d'), to: (to_date + 1.day).to_string('%Y-%m-%d')
+    call_log_answers = Service::CallLogAnswer.fetch_by project_id, variable_id, from_date.to_string('%Y-%m-%d'), (to_date + 1.day).to_string('%Y-%m-%d')
     call_log_answers.each do |answer|
       if answer.value
         is_modified = true

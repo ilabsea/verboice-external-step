@@ -3,7 +3,7 @@ module Steps
     def self.response options={}
       tel = Tel.new(options[:address])
       now = ::Date.today
-      rating = ::PeriodRating.get(date: now)
+      rating = ::PeriodRating.get(now)
 
       is_registered = 0
       if rating

@@ -18,7 +18,7 @@ class StepsController < ApplicationController
 
   def update
     if params[:id] == Step::DETECT_MOBILE_OPERATOR
-      Operator.update_prefix_setting operators: params[:operators]
+      Operator.update_prefix_setting params[:operators]
     end
 
     redirect_to steps_path, notice: "Step #{params[:id]} has been updated"
@@ -45,7 +45,7 @@ class StepsController < ApplicationController
     step = Step.find_by_name(params[:id])
     period_rating = PeriodRating.find(protected_sync_params)
     if step.project_id && step.variable_id
-      period_rating.sync_numbers_with! project_id: step.project_id, variable_id: step.variable_id
+      period_rating.sync_numbers_with! step.project_id, step.variable_id
       redirect_to edit_step_path(step.name), notice: "Rating's numbers has been synchronized"
     else
       redirect_to edit_step_path(step.name), alert: "Please update project and variable before synchronize"
@@ -57,7 +57,7 @@ class StepsController < ApplicationController
   end
 
   def result
-    render json: Step.type(name: params[:id]).response(params)
+    render json: Step.type(params[:id]).response(params)
   end
 
   private
