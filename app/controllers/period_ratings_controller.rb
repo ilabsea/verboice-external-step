@@ -9,17 +9,20 @@ class PeriodRatingsController < ApplicationController
     @step = Step.find_by_name Step::PERIOD_RATING
     @rating = PeriodRating.new step_id: @step.id
 
-    append_breadcrumbs
+    append_breadcrumbs 'New'
   end
 
   def edit
     @rating = PeriodRating.find(params[:id])
 
-    append_breadcrumbs
+    append_breadcrumbs 'Edit'
   end
 
   def create
     @rating = PeriodRating.new(protected_advance_params)
+
+    append_breadcrumbs 'New'
+
     if @rating.save
       redirect_to edit_step_path(@rating.step.name), notice: 'Rating has been created'
     else
@@ -30,6 +33,9 @@ class PeriodRatingsController < ApplicationController
 
   def update
     @rating = PeriodRating.find(params[:id])
+
+    append_breadcrumbs 'Edit'
+
     if @rating.update_attributes(protected_advance_params)
       redirect_to edit_step_path(@rating.step.name), notice: 'Rating has been updated'
     else
@@ -51,9 +57,9 @@ class PeriodRatingsController < ApplicationController
     params.require(:period_rating).permit(:step_id, :client_from_date, :client_to_date, :code, :description)
   end
 
-  def append_breadcrumbs
+  def append_breadcrumbs current_action
     add_breadcrumb @rating.step.display_name, edit_step_path(@rating.step.name)
-    add_breadcrumb action_name
+    add_breadcrumb current_action
   end
 
   def error_for record
