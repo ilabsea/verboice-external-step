@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     put :sync_with_project_variable, on: :member
   end
 
-  resources :period_ratings, except: [:index]
+  resources :period_ratings
 
   resources :project_variables, only: [:index]
 

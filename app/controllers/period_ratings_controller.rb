@@ -1,6 +1,10 @@
 class PeriodRatingsController < ApplicationController
   add_breadcrumb "Steps", :steps_path
 
+  def index
+    redirect_to edit_step_path(Step::PERIOD_RATING)
+  end
+
   def new
     @step = Step.find_by_name Step::PERIOD_RATING
     @rating = PeriodRating.new step_id: @step.id
