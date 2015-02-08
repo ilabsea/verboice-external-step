@@ -35,34 +35,34 @@ steps = [
   {
     name: Step::PERIOD_RATING,
     display_name: 'Period Rating',
-    description: 'This external step is used for detecting if a call is done within a period and the number has not rate in the period and return the code of the period. 
-                  In case of a call period does not match or the number already provided the rating in the period, it will return -1',
+    description: 'This external step is used for checking if a call is within a rating period, and if the phone number has rated in this period before.',
     url: File.join(ENV['HOST'], "/steps/#{Step::PERIOD_RATING}/manifest"),
     variables_attributes: [
       { name: 'result', display_name: 'Rating code',
-        description: 'Return code if call period matches and the number has not rate in the period. <br/>
-          Return -1 if call period does not match or the number provided the rating in the period already.',
+        description: 'Return Code  if a call period matches and the phone number has not rated in that period yet. <br/> Return -1 if call period does not match or the phone number already provided rating in that period.',
         kind: 'numeric', direction: 'outgoing' }
     ]
   },
   {
     name: Step::STORE_PERIOD_RATING,
     display_name: 'Store Period Rating',
-    description: 'This external step is used for saving the number that provide the rating within the period',
+    description: 'Description of "store period rating": This external step saves the phone number that provided the rating',
     url: File.join(ENV['HOST'], "/steps/#{Step::STORE_PERIOD_RATING}/manifest"),
     variables_attributes: [
-      { name: 'result', display_name: 'Result', description: '', kind: 'numeric', direction: 'outgoing' }
+      { name: 'result', display_name: 'Result',
+        description: "Return 1 if the number is stored <br/> Return 0 if the number isn't stored",
+        kind: 'numeric', direction: 'outgoing' }
     ]
   },
   {
     name: Step::NEW_CALLER,
     display_name: 'New Caller',
-    description: 'This external step is used to detect if a calling number is a new number',
+    description: "This external step detects if a caller's phone number is a new number call to hotline",
     url: File.join(ENV['HOST'], "/steps/#{Step::NEW_CALLER}/manifest"),
     variables_attributes: [
       {
         name: 'result', display_name: 'Result', 
-        description: 'return 1 if it is a new number <br/> return 0 if it is not new number',
+        description: "Return 1 if the call is a new number <br/> Return 0 if the call isn't new number",
         kind: 'numeric', direction: 'outgoing'
       }
     ]
