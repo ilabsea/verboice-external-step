@@ -1,5 +1,5 @@
 class PeriodRating < ActiveRecord::Base
-  validates :code, :step_id, presence: true
+  validates :code, :step_id, :from_date, :to_date, presence: true
   serialize :numbers, Array
 
   belongs_to :step
@@ -7,11 +7,7 @@ class PeriodRating < ActiveRecord::Base
   validates :code, uniqueness: true
   validates :code, numericality: { greater_than: 0, less_than: 100 }
 
-  attr_accessor :client_from_date, :client_to_date, :addresses
-
-  validates :client_from_date, :"validator/date" => { date_format: Date::DEFAULT_FORMAT, field: :from_date }, if: Proc.new { |record| record.new_record? }
-  validates :client_to_date, :"validator/date" => { date_format: Date::DEFAULT_FORMAT, field: :to_date }, if: Proc.new { |record| record.new_record? }
-
+  validate :from_date_must_be_less_than_to_date
   validate :unique_date_range
 
   SEPERATOR = ","
@@ -45,17 +41,14 @@ class PeriodRating < ActiveRecord::Base
     end
   end
 
+  def from_date_must_be_less_than_to_date
+    errors.add(:date, 'to_date must be greater than from_date') if from_date > to_date
+  end
+
   def unique_date_range
-    if client_from_date.present? && client_to_date.present?
-      self.from_date = Parser::DateParser.parse(client_from_date)
-      self.to_date = Parser::DateParser.parse(client_to_date)
-
-      errors.add(:date, 'to_date must be greater than from_date') if self.from_date > self.to_date
-
-      PeriodRating.where.not(id: self.id).each do |rating|
-        if rating.from_date.between?(from_date, to_date) || rating.to_date.between?(from_date, to_date)
-          errors.add(:date, 'date range already exists')
-        end
+    PeriodRating.where.not(id: self.id).each do |rating|
+      if rating.in_range? from_date, to_date
+        errors.add(:date, 'date range already exists')
       end
     end
   end
@@ -72,44 +65,16 @@ class PeriodRating < ActiveRecord::Base
     found
   end
 
+  def in_range? first_date, second_date
+    first_date.between?(from_date, to_date) || (first_date.less_than_or_equal?(from_date) && second_date.greater_than_or_equal?(from_date))
+  end
+
   def has_date? date
     date.between?(from_date, to_date)
   end
 
   def has_telephone? tel
     numbers.include?(tel.without_prefix)
-  end
-
-  def addresses
-    @addresses
-  end
-
-  def addresses=(val)
-    @addresses = val
-  end
-
-  def client_from_date
-    @client_from_date
-  end
-
-  def client_from_date_display
-    from_date.nil? ? @client_from_date : from_date.to_string
-  end
-
-  def client_from_date=(val)
-    @client_from_date = val
-  end
-
-  def client_to_date
-    @client_to_date
-  end
-
-  def client_to_date_display
-    to_date.nil? ? @client_to_date : to_date.to_string
-  end
-
-  def client_to_date=(val)
-    @client_to_date = val
   end
 
   def sync_numbers_with!(project_id, variable_id)

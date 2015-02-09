@@ -54,7 +54,7 @@ class PeriodRatingsController < ApplicationController
   private
 
   def protected_advance_params
-    params.require(:period_rating).permit(:step_id, :client_from_date, :client_to_date, :code, :description)
+    params.require(:period_rating).permit(:step_id, :from_date, :to_date, :code, :description)
   end
 
   def append_breadcrumbs current_action

@@ -47,6 +47,7 @@ gem "exception_handler"
 gem "kaminari"
 gem 'twitter-typeahead-rails'
 gem 'breadcrumbs_on_rails'
+gem 'simple_form'
 
 # Use unicorn as the app server
 # gem 'unicorn'

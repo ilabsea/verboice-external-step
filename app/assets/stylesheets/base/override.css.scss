@@ -26,3 +26,12 @@ a, button {
 .app-container .breadcrumb {
   margin-top: 10px;
 }
+
+.form-inline  {
+  label {
+    width: 12em !important;
+  }
+  input[type=submit] {
+    margin-top: 10px;
+  }
+}

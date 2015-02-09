@@ -5,11 +5,24 @@ $form-margin-left: 270px;
 }
 
 .form {
-	width: 470px;
+	width: 700px;
+}
+
+.form .form-group {
+	width: 600px;
+}
+
+.form .help-inline {
+	margin-left: 10px;
 }
 
 .form input, a.button, select {
   margin-bottom: 10px;
+}
+
+.form textarea {
+	width: 400px !important;
+	height: 50px !important;
 }
 
 .btn-block {

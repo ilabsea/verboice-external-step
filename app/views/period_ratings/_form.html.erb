@@ -1,46 +1,24 @@
-<div class="collapse-group period-rating-setting w500">
-	<h3><%= title %></h3>
-		<div class="panel-body">
-			<%= form_for(@rating, html: { class: 'form' }) do |f| %>
-				<%= f.hidden_field :step_id %>
-				<div class='form-group clearfix'>
-					<%= f.label :client_from_date, 'From', class: 'col-sm-3 control-label required' %>
-					<div class="col-sm-4">
-						<%= f.text_field :client_from_date, value: @rating.try(:client_from_date_display), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off' %>
-					</div>
-				</div>
+<div class="collapse-group period-rating-setting">
+  <h3><%= title %></h3>
 
-				<div class='form-group clearfix'>
-					<%= f.label :client_to_date, 'To', class: 'col-sm-3 control-label required' %>
-					<div class="col-sm-4">
-						<%= f.text_field :client_to_date, value: @rating.try(:client_to_date_display), maxlength: 10, class: 'form-control datepicker required', placeholder: 'dd/mm/yyyy', autocomplete: 'off' %>
-					</div>
-				</div>
+  <%= simple_form_for @rating, html: {class: 'form form-inline' } do |f|  %>
+    <%= f.input :step_id, as: :hidden %>
+    <div class='clearfix'>
+      <%= f.input :from_date, order: [:day, :month, :year], as: :date %>
+    </div>
+    <div class='clearfix'>
+      <%= f.input :to_date, order: [:day, :month, :year], as: :date %>
+    </div>
+    <div class='clearfix'>
+      <%= f.input :code, label: 'Code (number only)', input_html: { class: 'numeric', maxlength: 2 } %>
+    </div>
+    <div class='clearfix'>
+      <%= f.input :description, as: :text %>
+    </div>
+    <div class='action'>
+      <label></label>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
 
-				<div class='form-group clearfix'>
-					<%= f.label :code, class: 'col-sm-3 control-label required' %>
-					<div class="col-sm-2">
-						<%= f.text_field :code, maxlength: 2, class: 'form-control period-rating-code required' %>
-					</div>
-					<div class='l-side'>
-						(number only)
-					</div>
-				</div>
-
-				<div class='form-group clearfix'>
-					<%= f.label :description, class: 'col-sm-3 control-label' %>
-					<div class="col-sm-9">
-						<%= f.text_field :description, class: 'form-control' %>
-					</div>
-				</div>
-
-				<div class='form-group'>
-					<div class="col-sm-3"></div>
-					<div class="col-sm-9">
-		      	<%= submit_tag 'Save', class: 'btn btn-primary' %>
-		      </div>
-		    </div>
-			<% end %>
-
-	  </div>
 </div>
