@@ -14,7 +14,10 @@ function createTypeahead(){
   var sources = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: urlSearch,
+    // prefetch: urlSearch,
+    remote: {
+      url: urlSearch + "?q=%QUERY"
+    },
     ttl: 1000 * 5
   });
 

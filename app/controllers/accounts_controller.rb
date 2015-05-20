@@ -1,6 +1,8 @@
 class AccountsController < ApplicationController
   def index
-    render json: Service::Account.all
-  end
+    accounts = Service::Account.all
+    accounts = accounts.select { |acc| acc.email.match("^#{params[:q]}") } if params[:q].present?
 
+    render json: accounts
+  end
 end
