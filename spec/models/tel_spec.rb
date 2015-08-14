@@ -24,7 +24,7 @@ describe Tel, :type => :model do
     it { expect(Tel.new('855010999999').area_code).to eq('10') }
     it { expect(Tel.new('+855010999999').area_code).to eq('10') }
 
-    it { expect(Tel.new('1109999999').area_code).to eq(nil) }
-    it { expect(Tel.new('+1109999999').area_code).to eq(nil) }
+    it { expect(Tel.new('1109999999').area_code).to eq('11') }
+    it { expect(Tel.new('+1109999999').area_code).to eq('+1') }
   end
 end

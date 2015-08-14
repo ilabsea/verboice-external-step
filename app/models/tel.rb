@@ -1,5 +1,5 @@
 class Tel
-  PREFIXES = ["+8550", "8550", "+855", "855", "0"]
+  PREFIXES = ["+8550", "8550", "+855", "855", "0", ""]
   AREA_CODE_LENGTH = 2
 
   def initialize number

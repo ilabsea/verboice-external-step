@@ -15,11 +15,25 @@ RSpec.describe Operator, :type => :model do
     it { expect(Operator.get(Tel.new('012999999').area_code)).not_to be(nil) }
     it { expect(Operator.get(Tel.new('85512999999').area_code)).not_to be(nil) }
     it { expect(Operator.get(Tel.new('+85512999999').area_code)).not_to be(nil) }
+    it { expect(Operator.get(Tel.new('12999999').area_code)).not_to be(nil) }
 
     it { expect(Operator.get(Tel.new('010999999').area_code)).not_to be(nil) }
     it { expect(Operator.get(Tel.new('85510999999').area_code)).not_to be(nil) }
     it { expect(Operator.get(Tel.new('+85510999999').area_code)).not_to be(nil) }
+    it { expect(Operator.get(Tel.new('10999999').area_code)).not_to be(nil) }
 
     it { expect(Operator.get(Tel.new('+1109999999').area_code)).to be(nil) }
+  end
+
+  context 'code' do
+    it { expect(Operator.get(Tel.new('012999999').area_code).code).to be(1) }
+    it { expect(Operator.get(Tel.new('85512999999').area_code).code).to be(1) }
+    it { expect(Operator.get(Tel.new('+85512999999').area_code).code).to be(1) }
+    it { expect(Operator.get(Tel.new('12999999').area_code).code).to be(1) }
+
+    it { expect(Operator.get(Tel.new('010999999').area_code).code).to be(2) }
+    it { expect(Operator.get(Tel.new('85510999999').area_code).code).to be(2) }
+    it { expect(Operator.get(Tel.new('+85510999999').area_code).code).to be(2) }
+    it { expect(Operator.get(Tel.new('10999999').area_code).code).to be(2) }
   end
 end
