@@ -9,7 +9,8 @@
         <% step.variables.incoming.each do |variable| %>
           <variable name="<%= variable.name %>"
                     display-name="<%= variable.display_name %>"
-                    type="<%= variable.kind %>"/>
+                    type="<%= variable.kind %>"
+                    required="true" />
         <% end %>
       </settings>
     <% end %>
