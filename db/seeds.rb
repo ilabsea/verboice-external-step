@@ -61,9 +61,25 @@ steps = [
     url: File.join(ENV['HOST'], "/steps/#{Step::NEW_CALLER}/manifest"),
     variables_attributes: [
       {
-        name: 'result', display_name: 'Result', 
+        name: 'result', display_name: 'Result',
         description: "Return 1 if the call is a new number <br/> Return 0 if the call isn't new number",
         kind: 'numeric', direction: 'outgoing'
+      }
+    ]
+  },
+  {
+    name: Step::RANDOM_NUMBER,
+    display_name: 'Random Number',
+    description: "This external step random the number to forward the call",
+    url: File.join(ENV['HOST'], "/steps/#{Step::RANDOM_NUMBER}/manifest"),
+    variables_attributes: [
+      {
+        name: 'result', display_name: 'Result',
+        description: "Return 1 if the call is a new number <br/> Return 0 if the call isn't new number",
+        kind: 'numeric', direction: 'outgoing'
+      },
+      {
+        name: 'numbers', display_name: 'Numbers', description: 'Random number to forward the call', kind: 'string', direction: 'incoming'
       }
     ]
   }

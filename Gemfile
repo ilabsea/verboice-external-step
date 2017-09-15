@@ -42,7 +42,7 @@ gem 'virtus'
 gem 'addressable'
 
 gem "therubyracer"
-gem "less-rails" 
+gem "less-rails"
 gem "exception_handler"
 gem "kaminari"
 gem 'twitter-typeahead-rails'

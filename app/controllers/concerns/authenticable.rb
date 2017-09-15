@@ -1,7 +1,7 @@
 module Authenticable
   extend ActiveSupport::Concern
 
-  included do 
+  included do
     before_action :authenticate_user!
     after_action :track_previous_page
   end
@@ -12,6 +12,7 @@ module Authenticable
 
   def sign_in_and_redirect_for account
     sign_in account
+
     if account.admin?
       redirect_to root_url, notice: 'You have been signed in successfully'
     else
