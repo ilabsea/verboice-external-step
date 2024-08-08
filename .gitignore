@@ -20,7 +20,6 @@ public/applications
 nbproject/*
 
 config/application.yml
-config/database.yml
 config/instance.yml
 
 vendor/ruby

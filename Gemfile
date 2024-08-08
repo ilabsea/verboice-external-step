@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
+ruby '2.3.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '~> 4.1.6'
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.21'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,7 +35,7 @@ gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.8.2'
 
 gem 'her'
 gem 'typhoeus'
@@ -80,5 +81,5 @@ group :test, :development do
 
   gem 'rspec_api_documentation', github: 'zipmark/rspec_api_documentation'
   gem 'apitome'
-  gem 'debugger'
+  gem 'byebug'
 end

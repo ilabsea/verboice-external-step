@@ -1,0 +1,32 @@
+version: '3.9'
+
+volumes:
+  db:
+  bundle:
+
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - db:/var/lib/mysql
+
+  web: &rails
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    platform: linux/amd64
+    environment:
+      DATABASE_HOST: 'db'
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    tmpfs: /app/tmp
+    depends_on:
+      - db
+    command: bash -c "bundle exec rails server -b 0.0.0.0 -p 3000"
+    ports:
+      - '3000:3000'
